@@ -22,10 +22,13 @@ font-thicken = true
 theme = Catppuccin Mocha
 
 # ─── Window / visual ───────────────────────────────
-background-opacity = 0.85
+background-opacity = 0.65
 background-blur-radius = 20
 mouse-hide-while-typing = true
-window-decoration = false
+# Tab bar butuh titlebar. macos-titlebar-style=tabs bikin tab nyatu ke titlebar
+# (look minimalis, tetap dapat multiple tab dengan ⌘T).
+window-decoration = auto
+macos-titlebar-style = tabs
 macos-option-as-alt = true
 window-padding-x = 8
 window-padding-y = 8
@@ -34,6 +37,13 @@ window-padding-y = 8
 clipboard-read = allow
 clipboard-write = allow
 copy-on-select = clipboard
+
+# ─── Tabs ──────────────────────────────────────────
+# Tab native Ghostty pakai ⌘ (Cmd), tidak tabrakan dengan Ctrl (tmux/nvim):
+#   ⌘T new tab · ⌘1..8 goto tab · ⌘9 last · ⌘Shift[ / ] prev/next · ⌘W close
+# Matikan Ctrl+Tab default agar Ctrl bebas untuk tmux/nvim.
+keybind = ctrl+tab=unbind
+keybind = ctrl+shift+tab=unbind
 
 # ─── Shell / behavior ──────────────────────────────
 shell-integration = zsh
