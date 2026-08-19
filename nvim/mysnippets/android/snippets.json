@@ -1,0 +1,10 @@
+{
+	"Local Properties": {
+		"scope": "android",
+		"prefix": "local",
+		"body": [
+			"sdk.dir=/home/kiki/Android"
+		],
+		"description": "Local Properties"
+	}
+} 

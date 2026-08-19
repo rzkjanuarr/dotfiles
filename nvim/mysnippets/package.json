@@ -1,0 +1,51 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./html/snippets.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./typescript/snippets.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./typescript/snippets.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./typescript/snippets.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./typescript/snippets.json"
+      },
+      {
+        "language": "android",
+        "path": "./android/snippets.json"
+      },
+      {
+        "language": "php",
+        "path": "./php/snippets.json"
+      },
+      {
+        "language": "sql",
+        "path": "./sql/snippets.json"
+      },
+      {
+        "language": "rust",
+        "path": "./rust/snippets.json"
+      },
+      {
+        "language": "dart",
+        "path": "./flutter/snippets.json"
+      },
+      {
+        "language": "dart",
+        "path": "./flutter/template.json"
+      }
+    ]
+  }
+}
+

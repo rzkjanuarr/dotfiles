@@ -1,0 +1,693 @@
+{
+  "DATABASE_CREATE": {
+    "prefix": "DATABASE_CREATE",
+    "body": [
+      "CREATE DATABASE ${database_name};"
+    ],
+    "description": "Membuat database baru",
+    "scope": "sql"
+  },
+  "DATABASE_DROP": {
+    "prefix": "DATABASE_DROP",
+    "body": [
+      "DROP DATABASE ${database_name};"
+    ],
+    "description": "Menghapus database",
+    "scope": "sql"
+  },
+  "DATABASE_DROP_TRUNCATE": {
+    "prefix": "DATABASE_DROP_TRUNCATE",
+    "body": [
+      "TRUNCATE ${table_name};"
+    ],
+    "description": "Mengosongkan isi tabel (truncate)",
+    "scope": "sql"
+  },
+  "DATABASE_SHOW": {
+    "prefix": "DATABASE_SHOW",
+    "body": [
+      "SHOW DATABASES;"
+    ],
+    "description": "Menampilkan daftar database",
+    "scope": "sql"
+  },
+  "DATABASE_USE": {
+    "prefix": "DATABASE_USE",
+    "body": [
+      "USE ${database_name};"
+    ],
+    "description": "Menggunakan database spesifik",
+    "scope": "sql"
+  },
+  "FILTER_ASC_DESC": {
+    "prefix": "FILTER_ASC_DESC",
+    "body": [
+      "### SECTION ORDER BY",
+      "# ORDER BY ASC -> TERKECIL",
+      "# ORDER BY DESC -> TERBESAR",
+      "SELECT *",
+      "FROM ${table_name}",
+      "ORDER BY",
+      "    ${column_name} ASC,",
+      "    ${id_column} DESC",
+      "LIMIT ${limit_number}",
+      ";",
+      "",
+      "SELECT ${table_alias}.name     AS NAMA,",
+      "       ${table_alias}.category AS KATEGORI,",
+      "       ${table_alias}.price    AS HARGA,",
+      "       ${table_alias}.quantity AS STOCK",
+      "FROM ${table_name} AS ${table_alias};"
+    ],
+    "description": "Filter data dengan ORDER BY (ASC/DESC) dan LIMIT",
+    "scope": "sql"
+  },
+  "SELECT_ALL": {
+    "prefix": "SELECT_ALL",
+    "body": [
+      "SELECT *",
+      "FROM ${table_name};",
+      "",
+      "SELECT",
+      "    ${column_name} AS nama,",
+      "    ${price_column} AS harga,",
+      "    ${quantity_column} AS sisa",
+      "FROM ${table_name};"
+    ],
+    "description": "Melihat semua atau beberapa data dari tabel",
+    "scope": "sql"
+  },
+  "FILTER_AVG": {
+    "prefix": "FILTER_AVG",
+    "body": [
+      "# AVG(price) - Menghitung rata-rata harga",
+      "SELECT AVG(${column_name}) AS '${alias_name}'",
+      "FROM ${table_name};"
+    ],
+    "description": "Menghitung rata-rata kolom",
+    "scope": "sql"
+  },
+  "FILTER_AVG_SUM_MIN_MAX": {
+    "prefix": "FILTER_AVG_SUM_MIN_MAX",
+    "body": [
+      "### SECTION GROUP BY",
+      "SELECT COUNT(${id_column}) AS '${count_alias}',",
+      "       ${group_column}",
+      "FROM ${table_name}",
+      "GROUP BY ${group_column};",
+      "",
+      "SELECT MAX(${price_column}) AS '${max_alias}',",
+      "       ${group_column}",
+      "FROM ${table_name}",
+      "GROUP BY ${group_column};",
+      "",
+      "SELECT MIN(${price_column}) AS '${min_alias}',",
+      "       ${group_column}",
+      "FROM ${table_name}",
+      "GROUP BY ${group_column};",
+      "",
+      "SELECT AVG(${price_column}) AS '${avg_alias}',",
+      "       ${group_column}",
+      "FROM ${table_name}",
+      "GROUP BY ${group_column};",
+      "",
+      "SELECT SUM(${quantity_column}) AS '${sum_alias}',",
+      "       ${group_column}",
+      "FROM ${table_name}",
+      "GROUP BY ${group_column};",
+      "",
+      "### SECTION HAVING CLAUSE",
+      "SELECT COUNT(${id_column}) AS ${total_alias},",
+      "       ${group_column}",
+      "FROM ${table_name}",
+      "GROUP BY ${group_column}",
+      "HAVING ${total_alias} > ${min_count};"
+    ],
+    "description": "Contoh GROUP BY dan HAVING dengan agregasi (COUNT, MAX, MIN, AVG, SUM)",
+    "scope": "sql"
+  },
+  "FILTER_BEETWEN": {
+    "prefix": "FILTER_BEETWEN",
+    "body": [
+      "# BETWEEN OPERATOR",
+      "# KADANG KITA INGIN LANGSUNG MENCARI DATA >= dan <= SECARA SEKALIGUS",
+      "# Misal mencari data products yang harganya antara 10000 sampai 20000",
+      "# Untuk melakukan itu, kita bisa menggunakan \" WHERE price >= 10000 AND price <= 20000 \"",
+      "# Namun ada operator BETWEEN yang bisa kita gunakan secara sederhana",
+      "# Untuk kebalikannya, kita bisa gunakan NOT BETWEEN",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} BETWEEN ${min_value} AND ${max_value};",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} NOT BETWEEN ${min_value} AND ${max_value};"
+    ],
+    "description": "Filter data dengan operator BETWEEN dan NOT BETWEEN",
+    "scope": "sql"
+  },
+  "FILTER_COUNT": {
+    "prefix": "FILTER_COUNT",
+    "body": [
+      "# COUNT(id) - Menghitung total baris data",
+      "SELECT COUNT(${id_column}) AS '${count_alias}'",
+      "FROM ${table_name};"
+    ],
+    "description": "Menghitung total baris data",
+    "scope": "sql"
+  },
+  "FILTER_LIKE": {
+    "prefix": "FILTER_LIKE",
+    "body": [
+      "select *",
+      "from ${table_name};",
+      "# MENCARI STRING DENGAN AWALAN S",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} LIKE '${prefix}%';",
+      "",
+      "# MENCARI STRING DENGAN AKHIRAN D",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} LIKE '%${suffix}';",
+      "",
+      "# MENCARI STRING BERISI MILD",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} LIKE '%${contains}%';"
+    ],
+    "description": "Filter data dengan operator LIKE",
+    "scope": "sql"
+  },
+  "FILTER_MAX": {
+    "prefix": "FILTER_MAX",
+    "body": [
+      "# MAX(price) - Mencari harga tertinggi",
+      "SELECT MAX(${column_name}) AS '${max_alias}'",
+      "FROM ${table_name};"
+    ],
+    "description": "Menghitung nilai maksimum dari kolom",
+    "scope": "sql"
+  },
+  "FILTER_MIN": {
+    "prefix": "FILTER_MIN",
+    "body": [
+      "# MIN(price) - Mencari harga terendah",
+      "SELECT MIN(${column_name}) AS '${min_alias}'",
+      "FROM ${table_name};"
+    ],
+    "description": "Menghitung nilai minimum dari kolom",
+    "scope": "sql"
+  },
+  "FILTER_NOT_IN": {
+    "prefix": "FILTER_NOT_IN",
+    "body": [
+      "# OPERATOR IN",
+      "# IN DIGUNAKAN UNTUK MEMPERSINGKAT DARI OPERATOR OR",
+      "",
+      "# AWALANYA KAYAK GINI",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} = '${value1}'",
+      "   OR ${column_name} = '${value2}';",
+      "",
+      "# JADI KAYAK GINI",
+      "# IN",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} IN ('${value1}', '${value2}');",
+      "",
+      "# NOT IN",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} NOT IN ('${value1}', '${value2}');"
+    ],
+    "description": "Filter data dengan operator IN dan NOT IN",
+    "scope": "sql"
+  },
+  "FILTER_NULL_IS_NULL": {
+    "prefix": "FILTER_NULL_IS_NULL",
+    "body": [
+      "# NULL OPERATOR",
+      "# IS NULL -> Mencari yang NULL",
+      "# IS NOT NULL -> Mencari yang tidak NULL",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} IS NULL;",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} IS NOT NULL;"
+    ],
+    "description": "Filter data dengan operator IS NULL dan IS NOT NULL",
+    "scope": "sql"
+  },
+  "FILTER_OPERATOR": {
+    "prefix": "FILTER_OPERATOR",
+    "body": [
+      "# MELIHAT SEMUA DATA QUANTITY YANG LEBIH DARI 50",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${quantity_column} > ${min_quantity};",
+      "",
+      "# MELIHAT SEMUA DATA QUANTITY YANG LEBIH DARI SAMA DENGAN 50",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${quantity_column} >= ${min_quantity};",
+      "",
+      "# MELIHAT SEMUA DATA YANG TIDAK SAMA DENGAN CATEGORY KRETEK",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${category_column} != '${category_value}';",
+      "",
+      "# MELIHAT SEMUA DATA YANG TIDAK SAMA DENGAN CATEGORY KRETEK",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${category_column} <> '${category_value}';",
+      "",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${quantity_column} > ${min_quantity}",
+      "  AND ${price_column} > ${min_price};",
+      "",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${category_column} = '${category_value}'",
+      "  AND ${price_column} < ${max_price};",
+      "",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${quantity_column} > ${min_quantity}",
+      "   OR ${price_column} > ${min_price};",
+      "",
+      "# OR",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE (${category_column} = '${category_value}' OR ${quantity_column} > ${min_quantity})",
+      "  AND ${price_column} > ${min_price};"
+    ],
+    "description": "Filter data dengan operator perbandingan (>, >=, !=, <>, AND, OR)",
+    "scope": "sql"
+  },
+  "FILTER_STOCK_QUANTITY": {
+    "prefix": "FILTER_STOCK_QUANTITY",
+    "body": [
+      "# MENCARI SEMUA DATA PRODUK FILTER DENGAN QUANTITY 100",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${quantity_column} = ${quantity_value};",
+      "",
+      "# MENCARI BEBERAPA DATA PRODUK FILTER DENGAN QUANTITY 100",
+      "SELECT ",
+      "    ${name_column} AS nama,",
+      "    ${price_column} AS harga",
+      "FROM ${table_name}",
+      "WHERE ${quantity_column} = ${quantity_value};",
+      "",
+      "# MENCARI SEMUA DATA PRODUK FILTER DENGAN PRICE 15000",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${price_column} = ${price_value};",
+      "",
+      "# MENCARI BEBERAPA DATA PRODUK FILTER DENGAN PRICE 15000",
+      "SELECT ",
+      "    ${name_column} AS nama,",
+      "    ${price_column} AS harga",
+      "FROM ${table_name}",
+      "WHERE ${price_column} = ${price_value};"
+    ],
+    "description": "Filter data berdasarkan kuantitas atau harga",
+    "scope": "sql"
+  },
+  "FILTER_SUM": {
+    "prefix": "FILTER_SUM",
+    "body": [
+      "# SUM(quantity) - Menjumlahkan total stok",
+      "SELECT SUM(${quantity_column}) AS '${sum_alias}'",
+      "FROM ${table_name};"
+    ],
+    "description": "Menghitung total jumlah (sum) kolom",
+    "scope": "sql"
+  },
+  "INSERT_DATA_MULTIPLE_TABLE": {
+    "prefix": "INSERT_DATA_MULTIPLE_TABLE",
+    "body": [
+      "INSERT INTO ${table_name} (${name_column}, ${price_column}, ${quantity_column})",
+      "VALUES ('${product_name1}', ${price_value1}, ${quantity_value1}),",
+      "       ('${product_name2}', ${price_value2}, ${quantity_value2}),",
+      "       ('${product_name3}', ${price_value3}, ${quantity_value3}),",
+      "       ('${product_name4}', ${price_value4}, ${quantity_value4}),",
+      "       ('${product_name5}', ${price_value5}, ${quantity_value5}),",
+      "       ('${product_name6}', ${price_value6}, ${quantity_value6}),",
+      "       ('${product_name7}', ${price_value7}, ${quantity_value7}),",
+      "       ('${product_name8}', ${price_value8}, ${quantity_value8}),",
+      "       ('${product_name9}', ${price_value9}, ${quantity_value9}),",
+      "       ('${product_name10}', ${price_value10}, ${quantity_value10}),",
+      "       ('${product_name11}', ${price_value11}, ${quantity_value11}),",
+      "       ('${product_name12}', ${price_value12}, ${quantity_value12}),",
+      "       ('${product_name13}', ${price_value13}, ${quantity_value13}),",
+      "       ('${product_name14}', ${price_value14}, ${quantity_value14}),",
+      "       ('${product_name15}', ${price_value15}, ${quantity_value15}),",
+      "       ('${product_name16}', ${price_value16}, ${quantity_value16}),",
+      "       ('${product_name17}', ${price_value17}, ${quantity_value17});"
+    ],
+    "description": "Memasukkan beberapa baris data ke tabel",
+    "scope": "sql"
+  },
+  "INSERT_DATA_SINGLE_TABLE": {
+    "prefix": "INSERT_DATA_SINGLE_TABLE",
+    "body": [
+      "INSERT INTO ${table_name} (${name_column}, ${price_column}, ${quantity_column})",
+      "VALUES ('${product_name}', ${price_value}, ${quantity_value});"
+    ],
+    "description": "Memasukkan satu baris data ke tabel",
+    "scope": "sql"
+  },
+  "JOIN_INNER": {
+    "prefix": "JOIN_INNER",
+    "body": [
+      "# - Jika ingin menampilkan data dari dua relasi table yang tetap tidak ada datanya atau NULL.",
+      "#     Kita bisa pakai antara RIGHT JOIN DAN LEFT JOIN.",
+      "# - Jika ingin menampilkan data dari dua relasi table yang ada datanya atau NOT NULLABLE, kita bisa pakai INNER JOIN",
+      "# - Jika ingin menampilkan data dari dua relasi table yang hanya tidak ada datanya atau NULLABLE.",
+      "#     Kita bisa pakai LEFT JOIN dan WHERE IS NULL",
+      "SELECT ${user_table}.id      AS `Id User`,",
+      "       ${user_table}.name    AS `Nama User`,",
+      "       ${post_table}.title   AS `Title Post`,",
+      "       ${post_table}.content AS `Content Post`",
+      "FROM ${users_table} AS ${user_table}",
+      "         INNER JOIN ${posts_table} AS ${post_table} ON ${user_table}.id = ${post_table}.user_id;"
+    ],
+    "description": "INNER JOIN untuk menampilkan data yang cocok dari dua tabel",
+    "scope": "sql"
+  },
+  "JOIN_LEFT": {
+    "prefix": "JOIN_LEFT",
+    "body": [
+      "# - Jika ingin menampilkan data dari dua relasi table yang tetap tidak ada datanya atau NULL.",
+      "#     Kita bisa pakai antara RIGHT JOIN DAN LEFT JOIN.",
+      "# - Jika ingin menampilkan data dari dua relasi table yang ada datanya atau NOT NULLABLE, kita bisa pakai INNER JOIN",
+      "# - Jika ingin menampilkan data dari dua relasi table yang hanya tidak ada datanya atau NULLABLE.",
+      "#     Kita bisa pakai LEFT JOIN dan WHERE IS NULL",
+      "SELECT ${user_table}.id      AS `ID USER`,",
+      "       ${user_table}.name    AS `NAME USER`,",
+      "       ${post_table}.title   AS `TITLE POST`,",
+      "       ${post_table}.content AS `CONTENT POST`",
+      "FROM ${users_table} ${user_table}",
+      "         LEFT JOIN ${posts_table} ${post_table} ON ${user_table}.id = ${post_table}.user_id;"
+    ],
+    "description": "LEFT JOIN untuk menampilkan semua data dari tabel kiri",
+    "scope": "sql"
+  },
+  "JOIN_RIGHT": {
+    "prefix": "JOIN_RIGHT",
+    "body": [
+      "# - Jika ingin menampilkan data dari dua relasi table yang tetap tidak ada datanya atau NULL.",
+      "#     Kita bisa pakai antara RIGHT JOIN DAN LEFT JOIN.",
+      "# - Jika ingin menampilkan data dari dua relasi table yang ada datanya atau NOT NULLABLE, kita bisa pakai INNER JOIN",
+      "# - Jika ingin menampilkan data dari dua relasi table yang hanya tidak ada datanya atau NULLABLE.",
+      "#     Kita bisa pakai LEFT JOIN dan WHERE IS NULL",
+      "SELECT ${user_table}.id      AS `ID USER`,",
+      "       ${user_table}.name    AS `NAME USER`,",
+      "       ${post_table}.title   AS `TITLE POST`,",
+      "       ${post_table}.content AS `CONTENT POST`",
+      "FROM ${users_table} ${user_table}",
+      "         RIGHT JOIN ${posts_table} ${post_table} ON ${user_table}.id = ${post_table}.user_id;"
+    ],
+    "description": "RIGHT JOIN untuk menampilkan semua data dari tabel kanan",
+    "scope": "sql"
+  },
+  "REPLACE_LOWER_UPPER_LENGTH": {
+    "prefix": "REPLACE_LOWER_UPPER_LENGTH",
+    "body": [
+      "SELECT LOWER(${column_name})  AS '${lower_alias}',",
+      "       UPPER(${column_name})  AS '${upper_alias}',",
+      "       LENGTH(${column_name}) AS '${length_alias}'",
+      "FROM ${table_name};"
+    ],
+    "description": "Mengubah case, mencari panjang string, dan mengganti teks",
+    "scope": "sql"
+  },
+  "TABLE_ADD_COLUMN": {
+    "prefix": "TABLE_ADD_COLUMN",
+    "body": [
+      "ALTER TABLE ${table_name}",
+      "    ADD COLUMN ${new_column} ${column_type}",
+      "        AFTER ${after_column};"
+    ],
+    "description": "Menambah kolom baru ke tabel",
+    "scope": "sql"
+  },
+  "TABLE_ADD_COLUMN_CREATED_AT": {
+    "prefix": "TABLE_ADD_COLUMN_CREATED_AT",
+    "body": [
+      "ALTER TABLE ${table_name}",
+      "    ADD COLUMN created_at",
+      "        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;"
+    ],
+    "description": "Menambah kolom `created_at` dengan timestamp otomatis",
+    "scope": "sql"
+  },
+  "TABLE_ADD_COLUMN_INDEX": {
+    "prefix": "TABLE_ADD_COLUMN_INDEX",
+    "body": [
+      "ALTER TABLE ${table_name}",
+      "    ADD INDEX ${index_name} (${column_name});",
+      "    ",
+      "    # CONTOH ADA 100 DATA ketika pake indexing totalnya analyze 0.3 detik, jika tidak pake indexing 0.11 detik",
+      "SELECT *",
+      "FROM ${table_name}",
+      "WHERE ${column_name} = '${search_value}';",
+      "",
+      "# CARA KERJA TANPA INDEXING",
+      "# - DATABASE HARUS MELAKUKAN FULL TABLE SCAN",
+      "# - HARUS MEMERIKSA SETIAP BARIS DARI 1 JUTA DATA",
+      "# - WAKTU PENCARIAAN BISA SANGAT LAMA (5-10 DETIK)",
+      "# - SEPERTI MENCARI BUKU DI PERPUSTAKAAN TANPA SISTEM PENOMORAN, ANDA HARUS MEMERIKSA SETIAP RAK SATU PER SATU",
+      "",
+      "# CARA KERJA DENGAN INDEXING",
+      "# - DATABASE LANGSUNG MENUJU KE LOKASI DATA YANG DICARI",
+      "# - TIDAK PERLU MEMERIKSA SELURUH TABLE",
+      "# - WAKTU PENCARIAN SANGAT CEPAT (MISALNYA 0.1 DETIK)",
+      "# - SEPERTI MENCARI BUKU MENGGUNAKAN KATALOG PERPUSTAKAAN, ANDA LANGSUNG TAHU DI RAK MANA BUKU TERSEBUT BERADA"
+    ],
+    "description": "Menambah indeks pada kolom tabel dan penjelasan manfaat indeks",
+    "scope": "sql"
+  },
+  "TABLE_ALIAS_COLUMN": {
+    "prefix": "TABLE_ALIAS_COLUMN",
+    "body": [
+      "# MENAMPILKAN SEMUA DATA",
+      "SELECT *",
+      "FROM ${table_name};",
+      "",
+      "# MENAMPILKAN BEBERAPA DATA",
+      "SELECT ${name_column},",
+      "       ${category_column},",
+      "       ${price_column},",
+      "       ${quantity_column}",
+      "FROM ${table_name};",
+      "",
+      "# MENAMPILKAN BEBERAPA DATA DENGAN ALIAS (COLUMN)",
+      "SELECT ${name_column}     AS NAMA,",
+      "       ${category_column} AS KATEGORI,",
+      "       ${price_column}    AS HARGA,",
+      "       ${quantity_column} AS STOCK",
+      "FROM ${table_name};",
+      "",
+      "# MENAMPILKAN BEBERAPA DATA DENGAN ALIAS (TABLE)",
+      "SELECT ${table_alias}.name     AS NAMA,",
+      "       ${table_alias}.category AS KATEGORI,",
+      "       ${table_alias}.price    AS HARGA,",
+      "       ${table_alias}.quantity AS STOCK",
+      "FROM ${table_name} AS ${table_alias};"
+    ],
+    "description": "Menggunakan alias untuk kolom dan tabel",
+    "scope": "sql"
+  },
+  "TABLE_CREATE": {
+    "prefix": "TABLE_CREATE",
+    "body": [
+      "CREATE TABLE ${table_name}",
+      "(",
+      "    ${id_column}        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,",
+      "#     id     CHAR PRIMARY KEY DEFAULT uuid(),",
+      "    ${name_column}      VARCHAR(255),",
+      "    ${price_column}     DECIMAL(10, 2) UNSIGNED DEFAULT 0.00,",
+      "    ${quantity_column}    INT UNSIGNED            DEFAULT 0,",
+      "    ${available_column}  BOOLEAN                 DEFAULT TRUE,",
+      "    ${category_column}  ENUM ('elektronik', 'pakaian', 'makanan', 'lainnya') NOT NULL,",
+      "    ${description_column} TEXT                                                 NULL,",
+      "    ${created_at_column} TIMESTAMP                                            NOT NULL DEFAULT CURRENT_TIMESTAMP",
+      ") ENGINE = InnoDB;"
+    ],
+    "description": "Membuat tabel baru",
+    "scope": "sql"
+  },
+  "TABLE_CREATE_INDEX": {
+    "prefix": "TABLE_CREATE_INDEX",
+    "body": [
+      "CREATE TABLE ${table_name}",
+      "(",
+      "    ${id_column}         INT PRIMARY KEY AUTO_INCREMENT,",
+      "    ${name_column}       VARCHAR(100) NOT NULL,",
+      "    ${email_column}      VARCHAR(100) NOT NULL,",
+      "    ${department_column} VARCHAR(100) NULL,",
+      "    INDEX ${index_name} (${email_column})",
+      ") ENGINE = InnoDB;"
+    ],
+    "description": "Membuat tabel dengan indeks",
+    "scope": "sql"
+  },
+  "TABLE_CREATE_RELATIONSHIP": {
+    "prefix": "TABLE_CREATE_RELATIONSHIP",
+    "body": [
+      "CREATE TABLE ${table_name}",
+      "(",
+      "    ${id_column}          INT  NOT NULL PRIMARY KEY AUTO_INCREMENT,",
+      "    ${product_id_column}  INT  NOT NULL,",
+      "    ${description_column} TEXT NULL,",
+      "    FOREIGN KEY (${product_id_column}) REFERENCES ${products_table} (${id_column}) ON DELETE CASCADE",
+      ") ENGINE = InnoDB;"
+    ],
+    "description": "Membuat tabel dengan foreign key",
+    "scope": "sql"
+  },
+  "TABLE_CREATE_RELATIONSHIP_MANY_TO_MANY": {
+    "prefix": "TABLE_CREATE_RELATIONSHIP_MANY_TO_MANY",
+    "body": [
+      "CREATE TABLE ${students_table}",
+      "(",
+      "    ${id_column}   INT PRIMARY KEY AUTO_INCREMENT,",
+      "    ${name_column} VARCHAR(100) NOT NULL",
+      ") ENGINE = InnoDB;",
+      "",
+      "CREATE TABLE ${courses_table}",
+      "(",
+      "    ${id_column}          INT PRIMARY KEY AUTO_INCREMENT,",
+      "    ${course_name_column} VARCHAR(100) NOT NULL",
+      ") ENGINE = InnoDB;",
+      "",
+      "CREATE TABLE ${student_courses_table}",
+      "(",
+      "    ${student_id_column} INT NOT NULL,",
+      "    ${course_id_column}  INT NOT NULL,",
+      "    PRIMARY KEY (${student_id_column}, ${course_id_column}),",
+      "    FOREIGN KEY (${student_id_column}) REFERENCES ${students_table} (${id_column}) ON DELETE CASCADE,",
+      "    FOREIGN KEY (${course_id_column}) REFERENCES ${courses_table} (${id_column}) ON DELETE CASCADE",
+      ") ENGINE = InnoDB;"
+    ],
+    "description": "Membuat tabel untuk relasi many-to-many",
+    "scope": "sql"
+  },
+  "TABLE_DATA_DELETE": {
+    "prefix": "TABLE_DATA_DELETE",
+    "body": [
+      "DELETE",
+      "FROM ${table_name}",
+      "WHERE ${id_column} = ${id_value};"
+    ],
+    "description": "Menghapus data dari tabel",
+    "scope": "sql"
+  },
+  "TABLE_DESCRIBE_1": {
+    "prefix": "TABLE_DESCRIBE_1",
+    "body": [
+      "DESCRIBE ${table_name};"
+    ],
+    "description": "Menampilkan struktur tabel (DESCRIBE)",
+    "scope": "sql"
+  },
+  "TABLE_DESCRIBE_2": {
+    "prefix": "TABLE_DESCRIBE_2",
+    "body": [
+      "SHOW CREATE TABLE ${table_name};"
+    ],
+    "description": "Menampilkan DDL (Data Definition Language) tabel",
+    "scope": "sql"
+  },
+  "TABLE_DROP_COLUMN": {
+    "prefix": "TABLE_DROP_COLUMN",
+    "body": [
+      "ALTER TABLE ${table_name}",
+      "    DROP COLUMN ${column_name};"
+    ],
+    "description": "Menghapus kolom dari tabel",
+    "scope": "sql"
+  },
+  "TABLE_DROP_INDEX": {
+    "prefix": "TABLE_DROP_INDEX",
+    "body": [
+      "ALTER TABLE ${table_name}",
+      "    DROP INDEX ${index_name};"
+    ],
+    "description": "Menghapus indeks dari tabel",
+    "scope": "sql"
+  },
+  "TABLE_EDIT_COLUMN": {
+    "prefix": "TABLE_EDIT_COLUMN",
+    "body": [
+      "ALTER TABLE ${table_name}",
+      "    MODIFY ${column_name} ${column_type}",
+      "        AFTER ${after_column};"
+    ],
+    "description": "Mengubah definisi kolom tabel",
+    "scope": "sql"
+  },
+  "TABLE_SHOW": {
+    "prefix": "TABLE_SHOW",
+    "body": [
+      "SHOW TABLES;"
+    ],
+    "description": "Menampilkan daftar tabel",
+    "scope": "sql"
+  },
+  "TABLE_UPDATE_DATA": {
+    "prefix": "TABLE_UPDATE_DATA",
+    "body": [
+      "# UPDATE SATU KOLOM DATA",
+      "UPDATE ${table_name}",
+      "SET ${category_column} = '${category_value}'",
+      "WHERE ${id_column} = ${id_value1};",
+      "",
+      "UPDATE ${table_name}",
+      "SET ${category_column} = '${category_value}'",
+      "WHERE ${id_column} = ${id_value2};",
+      "",
+      "UPDATE ${table_name}",
+      "SET ${category_column}    = '${category_value2}',",
+      "    ${description_column} = '${description_value}'",
+      "WHERE ${id_column} = ${id_value3};",
+      "",
+      "# UPDATE DATA YANG EXISTING",
+      "# CASE : Ketika HARGA SAAT INI = 15000",
+      "# DI HARGA TERBARU +5000",
+      "UPDATE ${table_name}",
+      "SET ${price_column} = ${price_column} + ${price_increment}",
+      "WHERE ${id_column} = ${id_value3};"
+    ],
+    "description": "Memperbarui data di tabel",
+    "scope": "sql"
+  },
+  "UTIL_DATE_FORMAT": {
+    "prefix": "UTIL_DATE_FORMAT",
+    "body": [
+      "# DATE_FORMAT YANG BISA DIPAKAI",
+      "# %d-%m-%Y -> 15-03-2025",
+      "# %Y/%m/%d -> 2025/03/15",
+      "# %M %d, %Y -> Maret 15, 2025",
+      "# %W, %d %M %Y -> Sabtu, 15 Maret 2025",
+      "# %H:%i:%s -> 11:54:09",
+      "",
+      "DATE_FORMAT(${date_column}, '${date_format}') AS `Tanggal Transaksi`"
+    ],
+    "description": "Menggunakan DATE_FORMAT untuk format tanggal",
+    "scope": "sql"
+  },
+  "UTIL_SET_LOCALTIME": {
+    "prefix": "UTIL_SET_LOCALTIME",
+    "body": [
+      "SET lc_time_names = '${locale}';"
+    ],
+    "description": "Mengatur lokal waktu untuk format tanggal",
+    "scope": "sql"
+  }
+}   

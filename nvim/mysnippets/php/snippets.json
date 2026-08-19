@@ -1,0 +1,81 @@
+{
+  "model_hasMany": {
+    "prefix": "model_hasMany",
+    "body": [
+      "public function name(): \\Illuminate\\Database\\Eloquent\\Relations\\HasMany",
+      "{",
+      "    return \\$this->hasMany(\\App\\Models\\NamaModel::class);",
+      "}"
+    ],
+    "description": "Generate a hasMany relationship method",
+    "scope": "php"
+  },
+  "model_belongsTo": {
+    "prefix": "model_belongsTo",
+    "body": [
+      "public function name(): \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo",
+      "{",
+      "    return \\$this->belongsTo(\\App\\Models\\NamaModel::class);",
+      "}"
+    ],
+    "description": "Generate a belongsTo relationship method",
+    "scope": "php"
+  },
+  "model_imageAttribute": {
+    "prefix": "model_imageAttribute",
+    "body": [
+      "protected function image(): \\Illuminate\\Database\\Eloquent\\Casts\\Attribute",
+      "{",
+      "    return Attribute::make(",
+      "        get: fn (\\$value) => url('/storage/categories/' . \\$value),",
+      "    );",
+      "}"
+    ],
+    "description": "Generate an image accessor using Eloquent Attribute casting",
+    "scope": "php"
+  },
+  "model_hasOne": {
+    "prefix": "model_hasOne",
+    "body": [
+      "public function name(): \\Illuminate\\Database\\Eloquent\\Relations\\HasOne",
+      "{",
+      "    return \\$this->hasOne(\\App\\Models\\NamaModel::class);",
+      "}"
+    ],
+    "description": "Generate a hasOne relationship method",
+    "scope": "php"
+  },
+  "model_belongsToMany": {
+    "prefix": "model_belongsToMany",
+    "body": [
+      "public function name(): \\Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany",
+      "{",
+      "    return \\$this->belongsToMany(\\App\\Models\\NamaModel::class);",
+      "}"
+    ],
+    "description": "Generate a belongsToMany relationship method",
+    "scope": "php"
+  },
+  "model_baseAttributes": {
+    "prefix": "model_baseAttributes",
+    "body": [
+      "use \\Illuminate\\Database\\Eloquent\\Factories\\HasFactory;",
+      "",
+      "protected \\$table = 'table_name';",
+      "",
+      "protected \\$fillable = [",
+      "    'column',",
+      "];",
+      "",
+      "protected \\$casts = [",
+      "    // 'is_active' => 'boolean',",
+      "    // 'settings' => 'array',",
+      "    // 'data' => 'json',",
+      "    // 'published_at' => 'datetime',",
+      "];"
+    ],
+    "description": "Generate base model properties: table, fillable, and casts with examples",
+    "scope": "php"
+  }
+}
+

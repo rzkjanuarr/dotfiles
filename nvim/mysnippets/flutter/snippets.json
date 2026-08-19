@@ -1,0 +1,52 @@
+{
+  "ln": {
+    "prefix": "ln",
+    "body": ["AppLocalizations lang = AppLocalizations.of(context)!"]
+  },
+  "cb": {
+    "prefix": "cb",
+    "body": ["cubit"]
+  },
+  "ems": {
+    "prefix": "ems",
+    "body": ["emit(state.copyWith());", "$1"]
+  },
+  "snacksuccess": {
+    "prefix": "snacksuccess",
+    "body": ["capekngoding.snackbar(\"Success\", \"Your Request is Success\");", "$2"]
+  },
+  "snackerror": {
+    "prefix": "snackerror",
+    "body": ["capekngoding.snackbar(\"Error\", \"Username is Required\");", "$2"]
+  },
+  "inp": {
+    "prefix": "inp",
+    "body": ["var ${1:/downcase} = Input.get(\"${1:/downcase}\");", "$2"]
+  },
+  "catcherror": {
+    "prefix": "catcherror",
+    "body": ["try {", "  $1 ", "} on Exception catch (err) {", "  print(err);", "}"]
+  },
+  "GetMain Snippet": {
+    "prefix": "getmain",
+    "body": [
+      "import 'package:flutter/material.dart';",
+      "import 'package:get/get.dart';",
+      "",
+      "void main() {",
+      "\trunApp(",
+      "\t\tGetMaterialApp(",
+      "\t\t\t\tdebugShowCheckedModeBanner: false,",
+      "\t\t\t\tinitialRoute: Routes.SPLASH,",
+      "\t\t\t\ttheme: appThemeData,",
+      "\t\t\t\tdefaultTransition: Transition.fade,",
+      "\t\t\t\tinitialBinding: SplashBinding(),",
+      "\t\t\t\tgetPages: AppPages.pages,",
+      "\t\t\t\thome: SplashPage(),",
+      "\t\t)",
+      "\t);",
+      "}"
+    ],
+    "description": "Replace Main file."
+  }
+}

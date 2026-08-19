@@ -1,0 +1,56 @@
+{
+  "function_print": {
+    "prefix": "printRUST",
+    "body": ["println!(\"$1\");"],
+    "description": "function println! rust",
+    "scope": "rust"
+  },
+  "rust_test_function": {
+    "prefix": "functionRUSTTEST",
+    "body": ["#[test]", "fn ${1:todo}() {", "\t$0", "}"],
+    "description": "Rust test function template",
+    "scope": "rust"
+  },
+  "rust_if": {
+    "prefix": "ifRUST",
+    "body": ["if ${1:todo} {", "\t${2:todo}", "}"],
+    "description": "Rust if statement template",
+    "scope": "rust"
+  },
+  "rust_else_default": {
+    "prefix": "ifelseRUST",
+    "body": ["else {", "\t${1:todo}", "}"],
+    "description": "Rust else statement template",
+    "scope": "rust"
+  },
+  "rust_else_if_continue": {
+    "prefix": "elseifRUST",
+    "body": ["else if ${1:todo} {", "\t${2:todo}", "}"],
+    "description": "Rust else if statement template",
+    "scope": "rust"
+  },
+  "rust_for": {
+    "prefix": "forRUST",
+    "body": ["for ${1:item} in ${2:items} {", "\t${3:todo}", "}"],
+    "description": "Rust for loop template",
+    "scope": "rust"
+  },
+  "rust_range": {
+    "prefix": "rangeRUST",
+    "body": ["${1:todo}..${2:todo}"],
+    "description": "Rust range template",
+    "scope": "rust"
+  },
+  "rust_match": {
+    "prefix": "matchRUST",
+    "body": [
+      "match ${1:todo_1} {",
+      "\t${2:todo2} => ${3:todo3},",
+      "\t${4:todo4} => ${5:todo5},",
+      "\t_ => println!(\"null\"),",
+      "}"
+    ],
+    "description": "Rust match template",
+    "scope": "rust"
+  }
+}
