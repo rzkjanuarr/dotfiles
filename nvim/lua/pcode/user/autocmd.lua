@@ -47,6 +47,26 @@ api.nvim_create_autocmd("TermOpen", {
   command = "startinsert | set nonumber norelativenumber | nnoremap <buffer> <C-c> i<C-c>",
 })
 
+-- Auto-strip carriage return (^M) untuk file kode dengan line-ending campur.
+-- Kasus: file asal CRLF diedit di buffer unix -> sebagian baris ada \r nyangkut
+-- -> tampil ^M. Autocmd ini bersihkan \r saat simpan, tanpa ganggu file yang
+-- memang murni DOS (fileformat=dos di-skip agar file Windows tetap CRLF).
+api.nvim_create_augroup("_strip_carriage_return", { clear = true })
+api.nvim_create_autocmd("BufWritePre", {
+  group = "_strip_carriage_return",
+  pattern = { "*.dart", "*.lua", "*.js", "*.ts", "*.jsx", "*.tsx", "*.vue", "*.php", "*.rs", "*.go", "*.py", "*.json", "*.yaml", "*.yml", "*.md" },
+  callback = function()
+    -- File murni DOS: biarkan (user sengaja CRLF). Hanya bersihkan buffer unix/mac.
+    if vim.bo.fileformat == "dos" then
+      return
+    end
+    local view = vim.fn.winsaveview()
+    -- Hapus \r di akhir baris (^M) tanpa mengubah baris lain.
+    vim.cmd([[silent! keeppatterns %s/\r$//e]])
+    vim.fn.winrestview(view)
+  end,
+})
+
 -- Function to Create Non-Existent Directory on BufWrite
 local function MkNonExDir(file, buf)
   if vim.fn.empty(vim.fn.getbufvar(buf, "&buftype")) == 1 and not string.match(file, "^%w+://") then

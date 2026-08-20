@@ -25,10 +25,11 @@ pcode.extras = {
   refactoring = false,
   treesittercontex = false,
   colorizer = true,
-  dap = false,
+  dap = true,
   deviconcolor = false,
   illuminate = true,
   indentscupe = false,
+  indentblankline = true,
   navic = true,
   nvimmenu = false,
   rainbowdelimiters = true,
@@ -51,6 +52,8 @@ pcode.extras = {
   grugfar = true,
   dbee = true,
   nvimspectre = false,
+  muslim = true,
+  commander = true,
 }
 -- activate config themes
 pcode.themes = {

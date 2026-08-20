@@ -7,6 +7,7 @@ local options = {
   cursorline = true, -- Sorot baris teks dari kursor
   expandtab = true, -- Aktifkan penggunaan spasi di tab
   fileencoding = "utf-8", -- Pengkodean konten file untuk buffer
+  fileformats = "dos,unix", -- Prioritas deteksi CRLF (dos) agar file ber-CRLF tidak menampilkan ^M
   fillchars = { eob = " " }, -- Nonaktifkan `~` pada baris yang tidak ada
   history = 100, -- Jumlah perintah yang diingat dalam tabel riwayat
   ignorecase = true, -- Pencarian tidak peka huruf besar kecil

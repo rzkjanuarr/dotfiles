@@ -216,3 +216,11 @@ vim.api.nvim_create_user_command("TSIsInstalled", function()
     end
   end)
 end, {})
+
+-- ── Snippet Saver: simpan blok visual jadi snippet VS Code ──────────────────
+-- Visual mode: <leader>ss  |  :SnippetSave
+-- Tanya nama(=language) -> tanya prefix -> tulis mysnippets/<nama>/snippets.json
+pcall(function()
+  require("pcode.plugins.lang.snippet_saver").setup()
+end)
+

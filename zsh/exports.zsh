@@ -7,8 +7,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ─── PATH ──────────────────────────────────────────
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"           # Rust / Cargo
-export PATH="/usr/local/share/dotnet:$PATH"    # .NET
+export PATH="$HOME/.cargo/bin:$PATH"        # Rust / Cargo
+export PATH="/usr/local/share/dotnet:$PATH" # .NET
 export PATH="$HOME/.dotnet/tools:$PATH"
 export PATH="/opt/homebrew/opt/python3/bin:$PATH"
 
@@ -57,6 +57,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.lmstudio/bin"
+
+# ─── Claude Code (custom endpoint) ─────────────────
+export ANTHROPIC_BASE_URL="https://api.aihack.web.id/v1"
+export ANTHROPIC_API_KEY="sk-4d759057d9d093f2"
+export ANTHROPIC_MODEL="claude-opus-4.6"
 
 # ─── Editor ────────────────────────────────────────
 export EDITOR="nvim"

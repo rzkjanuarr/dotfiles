@@ -4,7 +4,25 @@ return {
     lazy = true,
     event = "BufRead",
     dependencies = {
-      { "mfussenegger/nvim-dap", lazy = true },
+      {
+        "mfussenegger/nvim-dap",
+        lazy = true,
+        config = function()
+          -- Sign HARUS terdefinisi saat nvim-dap load (sebelum toggle_breakpoint
+          -- dipanggil via F9), kalau tidak sign_place gagal → ikon tak muncul.
+          -- Pakai Unicode standar (bukan Nerd Font glyph) supaya text pasti render.
+          local signs = {
+            DapBreakpoint = { text = "●", texthl = "DiagnosticSignError" },
+            DapBreakpointCondition = { text = "◆", texthl = "DiagnosticSignWarn" },
+            DapLogPoint = { text = "◆", texthl = "DiagnosticSignInfo" },
+            DapStopped = { text = "▶", texthl = "DiagnosticSignWarn", linehl = "Visual" },
+            DapBreakpointRejected = { text = "○", texthl = "DiagnosticSignHint" },
+          }
+          for name, opt in pairs(signs) do
+            vim.fn.sign_define(name, opt)
+          end
+        end,
+      },
       { "nvim-neotest/nvim-nio", lazy = true },
       {
         "theHamsta/nvim-dap-virtual-text",
@@ -14,10 +32,26 @@ return {
       },
     },
     config = function()
+      -- Define sign breakpoint DULU (Unicode standar biar text pasti render).
+      local signs = {
+        DapBreakpoint = { text = "●", texthl = "DiagnosticSignError" },
+        DapBreakpointCondition = { text = "◆", texthl = "DiagnosticSignWarn" },
+        DapLogPoint = { text = "◆", texthl = "DiagnosticSignInfo" },
+        DapStopped = { text = "▶", texthl = "DiagnosticSignWarn", linehl = "Visual" },
+        DapBreakpointRejected = { text = "○", texthl = "DiagnosticSignHint" },
+      }
+      for name, opt in pairs(signs) do
+        vim.fn.sign_define(name, opt)
+      end
       require("pcode.user.dapui")
     end,
     keys = {
       { "<leader>d", "", desc = "  Debug" },
+      { "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint (F9)" },
+      { "<F5>", "<cmd>lua require'dap'.continue()<cr>", desc = "Start/Continue (F5)" },
+      { "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
+      { "<leader>bc", "<cmd>lua require'dap'.continue()<cr>", desc = "Start/Continue Debug" },
+
       { "<leader>dt", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
       { "<leader>db", "<cmd>lua require'dap'.step_back()<cr>", desc = "Step Back" },
       { "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", desc = "Continue" },

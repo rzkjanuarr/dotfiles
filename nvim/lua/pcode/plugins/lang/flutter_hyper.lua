@@ -52,6 +52,19 @@ local function setup_keymaps(bufnr)
   map("<leader>fy", function() focus_to_contains(" body:") end, "Flutter: focus body:")
   map("<leader>fn", function() focus_to_contains(" bottomNavigationBar:") end, "Flutter: focus bottomNavigationBar:")
   map("<leader>fw", wrap_widget, "Flutter: wrap widget (LSP)")
+
+  -- Generator (port status-bar Flutter Hyper): Core / Module / Udf
+  local gen = require("pcode.plugins.lang.flutter_hyper_gen")
+  map("<leader>fc", gen.generate_core, "Flutter: generate core.dart")
+  map("<leader>fm", gen.generate_module, "Flutter: create module dari template")
+  map("<leader>fu", gen.generate_udf, "Flutter: generate UDF snippet")
+
+  -- Menu terpusat semua fitur hyper (popup): generator/wrap/remove/permission/open
+  local menu = require("pcode.plugins.lang.flutter_hyper_menu")
+  map("<leader>fh", menu.main_menu, "Flutter Hyper: menu terpusat")
+  map("<leader>fW", menu.wrap_menu, "Flutter Hyper: wrap widget (list)")
+  map("<leader>fP", menu.permission_menu, "Flutter Hyper: add Android permission")
+  map("<leader>fo", menu.open_menu, "Flutter Hyper: open file project")
 end
 
 -- ── FVM resolver ────────────────────────────────────────────────────────────
@@ -109,6 +122,10 @@ return {
     ft = "dart",
     dependencies = { "nvim-lua/plenary.nvim" },
     init = function()
+      -- daftarkan :FlutterCore / :FlutterModule / :FlutterUdf lebih awal.
+      require("pcode.plugins.lang.flutter_hyper_gen").setup()
+      -- daftarkan :FlutterHyper / :FlutterPermission / :FlutterWrap / :FlutterOpen
+      require("pcode.plugins.lang.flutter_hyper_menu").setup()
       -- autocmd dipasang lebih awal agar keymap aktif untuk setiap buffer dart,
       -- termasuk buffer dart pertama yang memicu ft = "dart".
       vim.api.nvim_create_autocmd("FileType", {
@@ -121,9 +138,39 @@ return {
     end,
     opts = function()
       local fl = resolve_flutter()
+      -- Ambil capabilities (cmp) + on_attach dari auto-lsp, sama seperti server lain.
+      -- Tanpa ini dartls berjalan dengan capabilities minim -> codeActionProvider=nil,
+      -- sehingga "Wrap with ..." (code action) tidak muncul (cuma notif kosong).
+      local ok_handlers, handlers = pcall(require, "auto-lsp.lsp.handlers")
       local opts = {
         lsp = {
           color = { enabled = true },
+          capabilities = ok_handlers and handlers.capabilities or nil,
+          on_attach = ok_handlers and handlers.on_attach or nil,
+        },
+        -- ── Widget UI guides (garis siku widget tree, ala VS Code) ──
+        -- Setara `dart.previewFlutterUiGuides` di VS Code: garis L-shaped
+        -- yang mengikuti struktur widget (Column → children → dst).
+        widget_guides = {
+          enabled = true,
+        },
+        -- ── Debugger (nvim-dap) ──────────────────────────────────
+        -- flutter-tools mendaftarkan dart/flutter debug adapter ke nvim-dap.
+        -- run_via_dap = jalankan app langsung lewat debugger (bisa breakpoint).
+        debugger = {
+          enabled = true,
+          run_via_dap = true,
+          exception_breakpoints = {},
+          -- Baca .vscode/launch.json bila ada (device/flavor/args reuse)
+          register_configurations = function(paths)
+            local dap = require("dap")
+            dap.adapters.dart = {
+              type = "executable",
+              command = paths.flutter_bin,
+              args = { "debug_adapter" },
+            }
+            require("dap.ext.vscode").load_launchjs()
+          end,
         },
       }
       if fl.fvm then
