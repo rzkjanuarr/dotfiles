@@ -340,8 +340,10 @@ else
     config = function(_, opts)
       require("neo-tree").setup(opts)
 
-      vim.api.nvim_create_autocmd("TermClose", {
-        pattern = "*lazygit*",
+      -- Segarkan tab Git di sidebar tiap kali Neogit selesai dipakai
+      -- (dulu dipicu oleh lazygit; lazygit sudah tidak dipakai lagi)
+      vim.api.nvim_create_autocmd("User", {
+        pattern = { "NeogitStatusRefreshed", "NeogitPushComplete", "NeogitCommitComplete" },
         callback = function()
           if package.loaded["neo-tree.sources.git_status"] then
             require("neo-tree.sources.git_status").refresh()

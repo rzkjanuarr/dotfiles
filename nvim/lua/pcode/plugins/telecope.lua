@@ -3,9 +3,22 @@ return {
 	lazy = true,
 	cmd = "Telescope",
 	version = false,
+	dependencies = {
+		-- matcher terkompilasi (C) → cepat + ranking ala fzf/VSCode
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		-- frecency: file yang sering/baru dibuka naik ke atas (ala VSCode Ctrl+P)
+		"nvim-telescope/telescope-frecency.nvim",
+	},
 	opts = function()
+		-- pilih pencari file tercepat yang tersedia: fd > fdfind > rg
+		local fd = vim.fn.executable("fd") == 1 and "fd"
+			or (vim.fn.executable("fdfind") == 1 and "fdfind" or nil)
 		local find_files = {
-			hidden = true,
+			hidden = true, -- ikutkan dotfiles (.env, .config) ...
+			-- ... TAPI jangan scan isi .git (dulu 60% hasil = sampah .git)
+			find_command = fd
+					and { fd, "--type", "f", "--hidden", "--follow", "--strip-cwd-prefix", "--exclude", ".git" }
+				or { "rg", "--files", "--hidden", "--glob", "!.git/*" },
 		}
 		local live_grep = {
 			only_sort_text = true,
@@ -48,7 +61,32 @@ return {
 					preview_cutoff = 120,
 				},
 				file_sorter = require("telescope.sorters").get_fuzzy_file,
-				file_ignore_patterns = { "node_modules" },
+				-- buang artifact build biar hasil pencarian spesifik (bukan file generated)
+				file_ignore_patterns = {
+					"^.git/",
+					"node_modules",
+					-- flutter / dart
+					"^build/",
+					"%.dart_tool/",
+					"%.g%.dart$",
+					"%.freezed%.dart$",
+					"ios/Pods/",
+					"android/%.gradle/",
+					"%.symlinks/",
+					-- umum
+					"%.lock$",
+					"dist/",
+					"%.next/",
+					"target/",
+					"vendor/",
+					-- binary/media (jarang dicari, bikin noise)
+					"%.png$",
+					"%.jpg$",
+					"%.jpeg$",
+					"%.ico$",
+					"%.pdf$",
+					"%.zip$",
+				},
 				generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 				path_display = { "smart" },
 				winblend = 0,
@@ -66,7 +104,16 @@ return {
 				},
 			},
 
-			extensions_list = { "themes", "terms" },
+			extensions_list = { "themes", "terms", "fzf", "frecency" },
+
+			extensions = {
+				fzf = {
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+					case_mode = "smart_case",
+				},
+			},
 
 			pickers = {
 				find_files = find_files,
@@ -175,8 +222,9 @@ return {
 	end,
 	keys = {
 		{ "<leader>s", "", desc = "  Search", mode = "n" },
-		{ "<leader><leader>", "<cmd>Telescope find_files<CR>", desc = " Find Files (All)", mode = "n" },
+		{ "<leader><leader>", "<cmd>Telescope frecency workspace=CWD<cr>", desc = " Find Files (sering dibuka)", mode = "n" },
 		{ "<leader>F", "<cmd>Telescope live_grep<cr>", desc = " Find Text", mode = "n" },
+		{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files (semua)", mode = "n" },
 		{ "<leader>sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch", mode = "n" },
 		{ "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", mode = "n" },
 		{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Find Help", mode = "n" },

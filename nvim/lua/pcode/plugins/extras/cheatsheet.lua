@@ -76,7 +76,6 @@ return {
       { "Undo", "n/i/v/x", "<C-z>" },
     },
     ["Git ( <leader>g )"] = {
-      { "Lazygit", "n", "<leader>gg" },
       { "Next/Prev Hunk", "n", "<leader>gj / <leader>gk" },
       { "Blame Line", "n", "<leader>gl" },
       { "Preview Hunk", "n", "<leader>gp" },

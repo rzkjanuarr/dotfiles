@@ -37,7 +37,8 @@ api.nvim_create_augroup("_alpha", { clear = true })
 api.nvim_create_autocmd("User", {
   group = "_alpha",
   pattern = "AlphaReady",
-  command = "set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2",
+  -- tabline memang disembunyikan permanen (options.lua), jadi tak perlu dikembalikan ke 2
+  command = "set showtabline=0",
 })
 
 -- Terminal Settings

@@ -100,8 +100,37 @@ keymap("n", "q", function()
   end
 end, opts)
 
--- find file global (sesuai dashboard)
-keymap("n", "F", "<cmd>Telescope find_files<cr>", opts)
+-- ── Shift+F: hub CARI KATA & REPLACE ────────────────────────────────────────
+-- Satu tombol buat 3 kebutuhan: cari kata saja, replace di file ini, replace semua.
+keymap("n", "F", function()
+  local pilihan = {
+    "󰈞  Cari kata (semua file)",
+    "󰛔  Replace di FILE INI",
+    "󰛔  Replace di SEMUA file",
+    "󰈞  Cari kata (file ini saja)",
+  }
+  vim.ui.select(pilihan, { prompt = "Cari / Replace:" }, function(pick)
+    if not pick then
+      return
+    end
+    if pick == pilihan[1] then
+      vim.cmd("Telescope live_grep")
+    elseif pick == pilihan[2] then
+      require("grug-far").open({
+        prefills = { paths = vim.fn.expand("%") },
+        staticTitle = " Search and Replace (Current File) ",
+      })
+    elseif pick == pilihan[3] then
+      require("grug-far").open({
+        windowCreationCommand = "tabnew",
+        staticTitle = " Global Search and Replace ",
+      })
+    elseif pick == pilihan[4] then
+      vim.cmd("Telescope current_buffer_fuzzy_find")
+    end
+  end)
+end, { noremap = true, silent = true, desc = "Cari kata / Replace" })
+
 keymap("n", "R", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "S", function()
   local grugfar = require("grug-far")

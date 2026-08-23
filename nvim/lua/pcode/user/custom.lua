@@ -4,11 +4,12 @@ return {
     "goolord/alpha-nvim",
     opts = {
       dash_model = {
-        [[                _      __                __    ]],
-        [[    ___ ___    (____  / /__  _______ ___/ ___  ]],
-        [[   / _ / _ \  / / _ \/  '_/ / __/ _ / _  / -_) ]],
-        [[  / .__\_____/ /\___/_/\_\  \__/\___\_,_/\__/  ]],
-        [[ /_/      |___/                                ]],
+        [[     ██╗██╗   ██╗███████╗████████╗    ██████╗  ██████╗     ██╗████████╗██╗ ]],
+        [[     ██║██║   ██║██╔════╝╚══██╔══╝    ██╔══██╗██╔═══██╗    ██║╚══██╔══╝██║ ]],
+        [[     ██║██║   ██║███████╗   ██║       ██║  ██║██║   ██║    ██║   ██║   ██║ ]],
+        [[██   ██║██║   ██║╚════██║   ██║       ██║  ██║██║   ██║    ██║   ██║   ╚═╝ ]],
+        [[╚█████╔╝╚██████╔╝███████║   ██║       ██████╔╝╚██████╔╝    ██║   ██║   ██╗ ]],
+        [[ ╚════╝  ╚═════╝ ╚══════╝   ╚═╝       ╚═════╝  ╚═════╝     ╚═╝   ╚═╝   ╚═╝ ]],
       },
     },
   },
@@ -80,17 +81,16 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     opts = function(_, opts)
-      opts.pickers = {
-        find_files = {
-          hidden = true,
-        },
-        live_grep = {
-          theme = "dropdown",
-          only_sort_text = true,
-          additional_args = function()
-            return { "--multiline" }
-          end,
-        },
+      -- JANGAN timpa find_files di sini: tuning-nya (fd + exclude .git) sudah
+      -- diatur di plugins/telecope.lua. Menimpanya bikin isi .git muncul lagi
+      -- dan hasil pencarian jadi penuh sampah.
+      opts.pickers = opts.pickers or {}
+      opts.pickers.live_grep = {
+        theme = "dropdown",
+        only_sort_text = true,
+        additional_args = function()
+          return { "--multiline" }
+        end,
       }
     end,
   },

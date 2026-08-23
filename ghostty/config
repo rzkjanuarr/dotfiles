@@ -6,7 +6,9 @@
 # "JetBrainsMono Nerd Font" = varian DENGAN ligatures.
 # (Hindari "JetBrainsMonoNL" — NL = No Ligatures.)
 font-family = JetBrainsMono Nerd Font
-font-size = 19
+# Font kecil = "zoom out": makin banyak baris & kolom muat, ruang nvim lega.
+# (dulu 19 — terlalu besar, sidebar + split bikin sempit)
+font-size = 14
 
 # Aktifkan ligatures + stylistic sets JetBrains Mono.
 # calt & liga = contextual/standard ligatures (==> != >= dll).
@@ -22,7 +24,7 @@ font-thicken = true
 theme = Catppuccin Mocha
 
 # ─── Window / visual ───────────────────────────────
-background-opacity = 0.65
+background-opacity = 0.15
 background-blur-radius = 20
 mouse-hide-while-typing = true
 # Tab bar butuh titlebar. macos-titlebar-style=tabs bikin tab nyatu ke titlebar
@@ -32,6 +34,11 @@ macos-titlebar-style = tabs
 macos-option-as-alt = true
 window-padding-x = 8
 window-padding-y = 8
+
+# Buka window langsung besar biar nvim dapat ruang maksimal sejak awal.
+# (alternatif: `maximize = true` untuk full-screen-tanpa-fullscreen)
+window-width = 200
+window-height = 50
 
 # ─── Clipboard ─────────────────────────────────────
 clipboard-read = allow

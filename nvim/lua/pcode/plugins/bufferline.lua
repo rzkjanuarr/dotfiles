@@ -6,16 +6,22 @@ return {
 	config = function()
 		vim.opt.termguicolors = true
 		local config = require("auto-bufferline").config()
+		-- Bar tab atas disembunyikan permanen (showtabline=0 di options.lua).
+		-- Tanpa ini bufferline maksa showtabline=2 tiap buffer > 1.
+		config.options = config.options or {}
+		config.options.auto_toggle_bufferline = false
 		require("bufferline").setup(config)
+		vim.o.showtabline = 0
 	end,
 	keys = {
 		{ "<leader>b", "", desc = "  Buffers", mode = "n" },
 		{
-			"<leader>bb",
+			-- Shift+P: lihat/cari semua buffer yang lagi kebuka
+			"P",
 			function()
 				require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({ previewer = false }))
 			end,
-			desc = "All Buffer",
+			desc = "All Buffer (list/cari)",
 			mode = "n",
 		},
 		{

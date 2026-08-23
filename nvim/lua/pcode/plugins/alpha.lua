@@ -5,28 +5,23 @@ local M = {
 
 M.opts = {
   dash_model = {
-    [[                _      __                __    ]],
-    [[    ___ ___    (____  / /__  _______ ___/ ___  ]],
-    [[   / _ / _ \  / / _ \/  '_/ / __/ _ / _  / -_) ]],
-    [[  / .__\_____/ /\___/_/\_\  \__/\___\_,_/\__/  ]],
-    [[ /_/      |___/                                ]],
+    [[     ██╗██╗   ██╗███████╗████████╗    ██████╗  ██████╗     ██╗████████╗██╗ ]],
+    [[     ██║██║   ██║██╔════╝╚══██╔══╝    ██╔══██╗██╔═══██╗    ██║╚══██╔══╝██║ ]],
+    [[     ██║██║   ██║███████╗   ██║       ██║  ██║██║   ██║    ██║   ██║   ██║ ]],
+    [[██   ██║██║   ██║╚════██║   ██║       ██║  ██║██║   ██║    ██║   ██║   ╚═╝ ]],
+    [[╚█████╔╝╚██████╔╝███████║   ██║       ██████╔╝╚██████╔╝    ██║   ██║   ██╗ ]],
+    [[ ╚════╝  ╚═════╝ ╚══════╝   ╚═╝       ╚═════╝  ╚═════╝     ╚═╝   ╚═╝   ╚═╝ ]],
   },
 }
 
 function M.config(_, opts)
   local alpha = require("alpha")
   local startify = require("alpha.themes.startify")
-  startify.section.header.val = pcode.dashboard or opts.dash_model
-  startify.section.top_buttons.val = {
-    startify.button("F", "󰈞  Find file", ":Telescope find_files <CR>"),
-    startify.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-    startify.button("p", "󰉋  Find project", ":Telescope projects <CR>"),
-    startify.button("r", "󰦛  Recently used files", ":Telescope oldfiles <CR>"),
-    startify.button("t", "󰊄  Find text", ":Telescope live_grep <CR>"),
-    startify.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-    startify.button("l", "󰒲  Lazy", ":Lazy<CR>"),
-    startify.button("q", "󰅚  Quit", ":qa<CR>"),
-  }
+
+  -- Tombol disesuaikan dengan keymap yang benar-benar dipakai sekarang.
+  -- (dulu ada tombol "Find project" yang error karena project.nvim tak terpasang)
+  startify.section.top_buttons.val = {}
+
   -- disable MRU
   startify.section.mru.val = { { type = "padding", val = 4 } }
   -- disable MRU cwd
@@ -35,6 +30,8 @@ function M.config(_, opts)
   startify.nvim_web_devicons.enabled = false
   startify.section.bottom_buttons.val = {}
 
+  startify.section.header.val = pcode.dashboard or opts.dash_model
+
   vim.api.nvim_create_autocmd("User", {
     pattern = "LazyVimStarted",
     desc = "Add Alpha dashboard footer",
@@ -42,23 +39,17 @@ function M.config(_, opts)
     callback = function()
       local stats = require("lazy").stats()
       local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
-			-- stylua: ignore
-			startify.section.footer.val = {
-				-- {
-				-- 	type = "text",
-				-- 	val = {"───────────────────────────────────────────"},
-				-- },
-				{
-					type = "text",
-					val = {
-						"⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins  in " .. ms .. "ms",
-					},
-				},
-				-- {
-				-- 	type = "text",
-				-- 	val = {"───────────────────────────────────────────"},
-				-- },
-			}
+      startify.section.footer.val = {
+        {
+          type = "text",
+          val = {
+            "───────────────────────────────────────────────",
+            "⚡ " .. stats.loaded .. "/" .. stats.count .. " plugin dimuat dalam " .. ms .. "ms",
+            "󰃭  " .. os.date("%A, %d %B %Y"),
+          },
+          opts = { hl = "Comment" },
+        },
+      }
       pcall(vim.cmd.AlphaRedraw)
     end,
   })

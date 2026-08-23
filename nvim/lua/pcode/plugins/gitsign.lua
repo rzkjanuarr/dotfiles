@@ -49,7 +49,6 @@ return {
   -- stylua: ignore
   keys = {
     { "<leader>g", "", desc = "  Git" },
-    { "<leader>gg",function()LAZYGIT_TOGGLE()end,desc = "Lazygit"},
     { "<leader>gj",function()require("gitsigns").next_hunk()end,desc = "Next Hunk"},
     { "<leader>gk",function()require("gitsigns").prev_hunk()end,desc = "Prev Hunk"},
     { "<leader>gl",function()require("gitsigns").blame_line()end,desc = "Blame"},

@@ -68,6 +68,7 @@ alias dot="cd ~/dotfiles"
 # ─── [AVD] Android Emulator ────────────────────────
 alias mesin_1="emulator -avd andro -snapshot default_boot &"
 alias mesin_2="emulator -avd andro2 -snapshot defaul_boot &"
+alias open_ios="open -a Simulator.app"
 
 # ─── [JAVA] Version Manager ────────────────────────
 alias jv11="jv 11"

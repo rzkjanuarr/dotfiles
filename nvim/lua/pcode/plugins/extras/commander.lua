@@ -119,6 +119,267 @@ return {
         cat = "commander",
       },
 
+      -- ── CORE: command harian paling sering dipakai ──
+      {
+        desc = "Core: cari/lihat semua buffer yang kebuka",
+        cmd = function()
+          require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({ previewer = false }))
+        end,
+        keys = { "n", "P" },
+        set = false, -- keymap sudah di-set di bufferline.lua
+        cat = "core",
+      },
+      {
+        desc = "Core: cari kata / REPLACE (menu 4 pilihan)",
+        cmd = "F",
+        keys = { "n", "F" },
+        set = false, -- keymap sudah di-set di keymaps.lua
+        cat = "core",
+      },
+      {
+        desc = "Core: cari file — yang sering dibuka duluan (frecency)",
+        cmd = "<CMD>Telescope frecency workspace=CWD<CR>",
+        keys = { "n", "<leader><leader>" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: cari file — SEMUA file di project",
+        cmd = "<CMD>Telescope find_files<CR>",
+        keys = { "n", "<leader>ff" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: terminal float (2 tab; Ctrl+l/h pindah tab, Ctrl+t tab baru)",
+        cmd = "<CMD>lua _FLOAT_TOGGLE()<CR>",
+        keys = { "n", "<leader>tf" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: file explorer — sidebar 3 tab (Files / Buffers / Git)",
+        cmd = "<CMD>Neotree toggle<CR>",
+        keys = { "n", "E" },
+        set = false, -- keymap sudah di-set di nvimtree.lua
+        cat = "core",
+      },
+      {
+        desc = "Core: PANEL GIT lengkap — status + history commit (za/Tab expand-collapse)",
+        cmd = "<CMD>Neogit<CR>",
+        keys = { "n", "<leader>gn" },
+        set = false, -- keymap sudah di-set di neogit.lua
+        cat = "core",
+      },
+      {
+        desc = "Core: HISTORY COMMIT (log grafik)",
+        cmd = "<CMD>Neogit log<CR>",
+        keys = { "n", "<leader>gh" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: CARI COMMIT / salin ID commit (Ctrl-y = salin)",
+        cmd = "<CMD>Telescope git_commits<CR>",
+        keys = { "n", "<leader>gi" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: PUSH ke remote",
+        cmd = "<CMD>Neogit push<CR>",
+        keys = { "n", "<leader>gf" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: panel git — s=stage, u=unstage, c=commit, P=push, l=log, b=branch, ?=menu",
+        cmd = "<CMD>Neogit<CR>",
+        cat = "core",
+      },
+      {
+        desc = "Core: explorer tab GIT (status perubahan di sidebar)",
+        cmd = "<CMD>Neotree git_status<CR>",
+        cat = "core",
+      },
+      {
+        desc = "Core: explorer tab BUFFERS (file yang lagi kebuka)",
+        cmd = "<CMD>Neotree buffers<CR>",
+        cat = "core",
+      },
+      {
+        desc = "Core: explorer — a=buat file/folder, d=hapus, r=rename, y/x lalu p=copy/pindah",
+        cmd = "<CMD>Neotree focus filesystem<CR>",
+        cat = "core",
+      },
+      {
+        desc = "Core: split VERTIKAL (window baru di kanan)",
+        cmd = "<CMD>vsplit<CR>",
+        keys = { "n", "<leader>|" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: split horizontal (window baru di bawah)",
+        cmd = "<CMD>split<CR>",
+        keys = { "n", "<leader>-" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: fokus window kiri / bawah / atas / kanan = Ctrl+h/j/k/l",
+        cmd = "<C-w>w",
+        cat = "core",
+      },
+      {
+        desc = "Core: SIMPAN SNIPPET — blok kode di visual mode → nvim/mysnippets/",
+        cmd = "<CMD>SnippetSave<CR>",
+        keys = { "x", "<leader>ss" },
+        set = false, -- keymap sudah di-set di snippet_saver.lua (visual mode)
+        cat = "core",
+      },
+      {
+        desc = "Core: toggle breakpoint (debug)",
+        cmd = "<CMD>lua require'dap'.toggle_breakpoint()<CR>",
+        keys = { "n", "<leader>bb" },
+        set = false,
+        cat = "core",
+      },
+      {
+        desc = "Core: comment baris/blok ala VSCode = Ctrl+/",
+        cmd = "gcc",
+        cat = "core",
+      },
+      {
+        desc = "Core: copy = Ctrl+c  |  undo = Ctrl+z  |  simpan = Ctrl+s",
+        cmd = "<CMD>silent! w<CR>",
+        cat = "core",
+      },
+
+      -- ── Claude Code (AI) ──
+      {
+        desc = "Claude: toggle terminal Claude Code",
+        cmd = "<CMD>ClaudeCode<CR>",
+        keys = { "n", "<leader>ac" },
+        set = false, -- keymap sudah di-set via plugin `keys` spec
+        cat = "claude",
+      },
+      {
+        desc = "Claude: fokus ke terminal Claude",
+        cmd = "<CMD>ClaudeCodeFocus<CR>",
+        keys = { "n", "<leader>af" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: resume sesi sebelumnya",
+        cmd = "<CMD>ClaudeCode --resume<CR>",
+        keys = { "n", "<leader>ar" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: lanjut (continue) sesi terakhir",
+        cmd = "<CMD>ClaudeCode --continue<CR>",
+        keys = { "n", "<leader>aC" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: pilih model",
+        cmd = "<CMD>ClaudeCodeSelectModel<CR>",
+        keys = { "n", "<leader>am" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: tambahkan buffer aktif ke konteks",
+        cmd = "<CMD>ClaudeCodeAdd %<CR>",
+        keys = { "n", "<leader>ab" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: kirim seleksi visual ke Claude",
+        cmd = "<CMD>ClaudeCodeSend<CR>",
+        keys = { "v", "<leader>as" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: terima diff (accept)",
+        cmd = "<CMD>ClaudeCodeDiffAccept<CR>",
+        keys = { "n", "<leader>aa" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: tolak diff (deny)",
+        cmd = "<CMD>ClaudeCodeDiffDeny<CR>",
+        keys = { "n", "<leader>ad" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: tutup semua diff yang pending",
+        cmd = "<CMD>ClaudeCodeCloseAllDiffs<CR>",
+        cat = "claude",
+      },
+      {
+        desc = "Claude: bersihkan lock sisa nvim yang mati paksa (crash/kill)",
+        cmd = "<CMD>ClaudeCodeCleanLocks<CR>",
+        cat = "claude",
+      },
+      {
+        desc = "Claude: status koneksi WebSocket",
+        cmd = "<CMD>ClaudeCodeStatus<CR>",
+        keys = { "n", "<leader>ai" },
+        set = false,
+        cat = "claude",
+      },
+      {
+        desc = "Claude: start server",
+        cmd = "<CMD>ClaudeCodeStart<CR>",
+        cat = "claude",
+      },
+      {
+        desc = "Claude: stop server",
+        cmd = "<CMD>ClaudeCodeStop<CR>",
+        keys = { "n", "<leader>ax" },
+        set = false,
+        cat = "claude",
+      },
+
+      -- ── Session (retrospect) ──
+      {
+        desc = "Session: simpan semua file yang sedang kebuka",
+        cmd = "<CMD>SessionSave<CR>",
+        keys = { "n", "<leader>\\s" },
+        set = false, -- keymap sudah di-set via plugin `keys` spec
+        cat = "session",
+      },
+      {
+        desc = "Session: buka/pilih session (fuzzy picker)",
+        cmd = "<CMD>SessionLoad<CR>",
+        keys = { "n", "<leader>\\l" },
+        set = false,
+        cat = "session",
+      },
+      {
+        desc = "Session: hapus session tersimpan",
+        cmd = "<CMD>SessionDelete<CR>",
+        keys = { "n", "<leader>\\d" },
+        set = false,
+        cat = "session",
+      },
+      {
+        desc = "Session: konfigurasi retrospect",
+        cmd = "<CMD>SessionConfig<CR>",
+        keys = { "n", "<leader>\\c" },
+        set = false,
+        cat = "session",
+      },
+
       -- ── Flutter Hyper ──
       {
         desc = "Flutter Hyper: menu terpusat (generator/wrap/permission/open)",
@@ -157,9 +418,10 @@ return {
       },
 
       -- ── Snippet ──
+      -- (entri utama ada di kategori `core`; ini alias lewat command)
       {
-        desc = "Snippet: simpan blok visual jadi snippet",
-        cmd = "<CMD>SnippetSave<CR>",
+        desc = "Snippet: kelola file snippet di nvim/mysnippets/",
+        cmd = "<CMD>edit " .. vim.fn.stdpath("config") .. "/mysnippets<CR>",
         cat = "snippet",
       },
 
@@ -238,6 +500,11 @@ return {
       },
 
       -- ── Search & Replace ──
+      {
+        desc = "File: sering/baru dibuka (SEMUA project, lintas folder)",
+        cmd = "<CMD>Telescope frecency<CR>",
+        cat = "search",
+      },
       {
         desc = "Search: teks di SEMUA file (live grep)",
         cmd = "<CMD>Telescope live_grep<CR>",

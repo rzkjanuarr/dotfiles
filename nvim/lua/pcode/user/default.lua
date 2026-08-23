@@ -15,11 +15,11 @@ pcode.lang = {
 -- activate config extras
 pcode.extras = {
   autosave = false,
-  bigfiles = false,
+  bigfiles = true,
   snacks = true,
-  opencode = true,
+  opencode = false,
   liveserver = false,
-  minianimate = true,
+  minianimate = false,
   neoscroll = false,
   nvimufo = true,
   refactoring = false,
@@ -45,15 +45,18 @@ pcode.extras = {
   tinydignostic = false,
   dressing = true,
   telescopediff = false,
-  cheatsheet = true,
+  cheatsheet = false,
   showkeys = true,
-  mcp = true,
+  mcp = false,
   avante = false,
   grugfar = true,
   dbee = true,
   nvimspectre = false,
-  muslim = true,
+  muslim = false,
   commander = true,
+  claudecode = true,
+  retrospect = true,
+  neogit = true,
 }
 -- activate config themes
 pcode.themes = {
@@ -86,14 +89,14 @@ pcode.themes = {
   -- tokyonight = "tokyonight-moon",
   --
   -- **:: Catppuccin Theme ::** --
-  catppuccin = "catppuccin",
+  -- catppuccin = "catppuccin",
   -- catppuccin = "catppuccin-latte",
   -- catppuccin = "catppuccin-frappe",
   -- catppuccin = "catppuccin-macchiato",
   -- catppuccin = "catppuccin-macchiato",
   --
   -- **:: Gruvbox Theme ::** --
-  -- gruvbox = "gruvbox",
+  gruvbox = "gruvbox",
 
   -- **:: Github Theme ::** --
   -- github = "github_dark_dimmed",
@@ -102,5 +105,5 @@ pcode.themes = {
 pcode.transparent = true
 pcode.localcode = true
 pcode.snippets_path = vim.fn.stdpath("config") .. "/mysnippets"
-pcode.use_nvimtree = true
+pcode.use_nvimtree = false -- pakai neo-tree (sidebar bertumpuk: FILES + GIT STATUS ala VSCode)
 pcode.nvimtree_float = false

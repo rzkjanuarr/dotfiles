@@ -50,10 +50,74 @@ return {
       hidden = true,
     })
 
-    local floating = Terminal:new({
-      direction = "float",
-      hidden = true,
-    })
+    -- ── Terminal float multi-tab ──────────────────────────────────────────
+    -- Simpan beberapa terminal float; Ctrl+h / Ctrl+l buat pindah antar-tab,
+    -- Ctrl+t buat nambah tab baru. Default langsung 2 tab.
+    local floats = {}
+    local aktif = 1
+
+    -- keymap khusus buffer terminal float: pindah/tambah tab.
+    -- buffer-local → nggak ganggu Ctrl+h/l pindah window di luar terminal.
+    local function pasang_keymap_tab(bufnr)
+      if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
+        return
+      end
+      local o = { buffer = bufnr, noremap = true, silent = true }
+      vim.keymap.set({ "n", "t" }, "<C-l>", function()
+        _G._FLOAT_NEXT()
+      end, o)
+      vim.keymap.set({ "n", "t" }, "<C-h>", function()
+        _G._FLOAT_PREV()
+      end, o)
+      vim.keymap.set({ "n", "t" }, "<C-t>", function()
+        _G._FLOAT_NEW()
+      end, o)
+    end
+
+    local function buat_float()
+      local t = Terminal:new({
+        direction = "float",
+        hidden = true,
+        -- on_create: pasti dipanggil saat buffer terminal dibuat
+        on_create = function(term)
+          pasang_keymap_tab(term.bufnr)
+        end,
+        -- on_open: dipasang ulang tiap dibuka, jaga-jaga ketimpa autocmd TermOpen
+        on_open = function(term)
+          pasang_keymap_tab(term.bufnr)
+        end,
+      })
+      table.insert(floats, t)
+      return t
+    end
+
+    -- mulai dengan 2 tab
+    buat_float()
+    buat_float()
+
+    local function tampilkan(idx)
+      for i, t in ipairs(floats) do
+        if i ~= idx and t:is_open() then
+          t:close()
+        end
+      end
+      aktif = idx
+      floats[idx]:open()
+      vim.notify("Terminal " .. idx .. "/" .. #floats, vim.log.levels.INFO)
+    end
+
+    function _G._FLOAT_NEXT()
+      tampilkan(aktif % #floats + 1)
+    end
+
+    function _G._FLOAT_PREV()
+      tampilkan((aktif - 2) % #floats + 1)
+    end
+
+    function _G._FLOAT_NEW()
+      buat_float()
+      tampilkan(#floats)
+    end
 
     function _G._HORIZONTAL_TOGGLE()
       horizontal:toggle()
@@ -64,17 +128,36 @@ return {
     end
 
     function _G._FLOAT_TOGGLE()
-      floating:toggle()
+      if floats[aktif]:is_open() then
+        for _, t in ipairs(floats) do
+          if t:is_open() then
+            t:close()
+          end
+        end
+      else
+        floats[aktif]:open()
+      end
     end
 
     function _G.set_terminal_keymaps()
       local optsn = { noremap = true }
       vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\\><C-n>]], optsn)
       vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\\><C-n>]], optsn)
-      vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\\><C-n><C-W>h]], optsn)
+      -- Di terminal FLOAT, Ctrl+h/l dipakai pindah antar-tab terminal (di-set
+      -- lewat on_open). Jadi pindah-window hanya untuk terminal non-float.
+      local is_float = false
+      for _, t in ipairs(floats) do
+        if t.bufnr == vim.api.nvim_get_current_buf() then
+          is_float = true
+          break
+        end
+      end
+      if not is_float then
+        vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\\><C-n><C-W>h]], optsn)
+        vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\\><C-n><C-W>l]], optsn)
+      end
       vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\\><C-n><C-W>j]], optsn)
       vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\\><C-n><C-W>k]], optsn)
-      vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\\><C-n><C-W>l]], optsn)
     end
 
     vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
