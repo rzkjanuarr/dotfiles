@@ -13,11 +13,17 @@
   },
   "snacksuccess": {
     "prefix": "snacksuccess",
-    "body": ["capekngoding.snackbar(\"Success\", \"Your Request is Success\");", "$2"]
+    "body": [
+      "capekngoding.snackbar(\"Success\", \"Your Request is Success\");",
+      "$2"
+    ]
   },
   "snackerror": {
     "prefix": "snackerror",
-    "body": ["capekngoding.snackbar(\"Error\", \"Username is Required\");", "$2"]
+    "body": [
+      "capekngoding.snackbar(\"Error\", \"Username is Required\");",
+      "$2"
+    ]
   },
   "inp": {
     "prefix": "inp",
@@ -25,7 +31,13 @@
   },
   "catcherror": {
     "prefix": "catcherror",
-    "body": ["try {", "  $1 ", "} on Exception catch (err) {", "  print(err);", "}"]
+    "body": [
+      "try {",
+      "  $1 ",
+      "} on Exception catch (err) {",
+      "  print(err);",
+      "}"
+    ]
   },
   "GetMain Snippet": {
     "prefix": "getmain",
@@ -48,5 +60,37 @@
       "}"
     ],
     "description": "Replace Main file."
+  },
+  "scaffold_std": {
+    "prefix": "scaffold_std",
+    "body": "return Scaffold(\nbody: SafeArea(\nchild: GetBuilder<Edashboard3Controller>(\nbuilder: (controller) {\n// kondisi loading\nif (controller.isLoading) {\nreturn Center(child: CircularProgressIndicator());\n}\n\n// kondisi error\nif (controller.hasError) {\nreturn Center(child: Text(\"Error: ${controller.errorMessage}\"));\n}\n\n// tampilan utama\nreturn SingleChildScrollView(\npadding: const EdgeInsets.all(20.0),\nchild: Column(children: []),\n);\n},\n),\n),\n);\n"
+  },
+  "border_all": {
+    "prefix": "border_all",
+    "body": "decoration: BoxDecoration(\ncolor: Colors.black,\nborderRadius: BorderRadius.all(\nRadius.circular(12.0),\n),\n),\n"
+  },
+  "border_only": {
+    "prefix": "border_only",
+    "body": "decoration: BoxDecoration(\ncolor: Colors.black,\nborderRadius: BorderRadius.only(\ntopLeft: Radius.circular(20),\nbottomLeft: Radius.circular(20),\n),\n),\n"
+  },
+  "border_col": {
+    "prefix": "border_col",
+    "body": "border: Border.all(width: 1, color: Colors.red),\n"
+  },
+  "scroll_atribut_1": {
+    "prefix": "scroll_atribut_1",
+    "body": "shrinkWrap: true,\nphysics: const NeverScrollableScrollPhysics(),\n"
+  },
+  "style_button": {
+    "prefix": "style_button",
+    "body": "elevation: 0,\npadding:\nconst EdgeInsets.symmetric(\nhorizontal: 8,\nvertical: 2,\n),\nside: const BorderSide(\ncolor: Colors.red,\nwidth: 0.5,\n),\nshape: RoundedRectangleBorder(\nborderRadius:\nBorderRadius.circular(\n8,\n),\n),\n"
+  },
+  "con_text": {
+    "prefix": "con_text",
+    "body": "Container(\npadding: const EdgeInsets.symmetric(\nhorizontal: 8,\nvertical: 4,\n),\ndecoration: BoxDecoration(\ncolor: Colors.red,\nborderRadius: BorderRadius.circular(8),\n),\nchild: const Text(\n\"SALE\",\nstyle: TextStyle(\nfontSize: 14.0,\nfontWeight: FontWeight.bold,\ncolor: Colors.white,\n),\n),\n),\n"
+  },
+  "text_dash_block": {
+    "prefix": "text_dash_block",
+    "body": "decoration: TextDecoration.lineThrough,\ndecorationColor: Colors.white,\ndecorationThickness: 2,\n"
   }
 }

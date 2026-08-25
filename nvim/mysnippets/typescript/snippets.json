@@ -1,0 +1,499 @@
+{
+	"Create Interface": {
+		"prefix": "cc-create-interface",
+		"body": [
+			"interface ${1:Name}State {",
+			"  // Example:",
+			"  // title?: string;",
+			"  // address?: string;",
+			"  // price?: string;",
+			"  // image?: any;",
+			"  // onPress?: () => void;",
+			"  $0",
+			"}"
+		],
+		"description": "Create a TypeScript interface with common state properties"
+	},
+	"React Native Class Component": {
+		"prefix": "cc-create-class-component",
+		"body": [
+			"import { Component } from 'react';",
+			"import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';",
+			"",
+			"interface ${1:ComponentName}State {",
+			"  // Example:",
+			"  // title?: string;",
+			"  // address?: string;",
+			"  // price?: string;",
+			"  // image?: any;",
+			"  // onPress?: () => void;",
+			"}",
+			"",
+			"class ${1:ComponentName} extends Component<{}, ${1:ComponentName}State> {",
+			"\trender() {",
+			"\t\t// const { label, icon, placeholder } = this.props;",
+			"",
+			"\t\t// Kondisi dimana ada suatu variable di UI nya diperbolehkan null",
+			"\t\t// let labelView = null;",
+			"\t\t// if (label) {",
+			"\t\t//   labelView = <Text style={styles.labelContainer}>{this.props.label}</Text>;",
+			"\t\t// }",
+			"",
+			"\t\t// Kondisi dimana tidak boleh null agar Style UI nya tidak error.",
+			"\t\t// let rightIconView = (",
+			"\t\t//   <View style={styles.side} />",
+			"\t\t// );",
+			"\t\t// if (showRightIconButton) {",
+			"\t\t//   rightIconView = (",
+			"\t\t//     <TouchableOpacity style={styles.side}>",
+			"\t\t//       <FastImage",
+			"\t\t//         source={require('../../../assets/icons/menu.png')}",
+			"\t\t//         style={styles.icon}",
+			"\t\t//       />",
+			"\t\t//     </TouchableOpacity>",
+			"\t\t//   );",
+			"\t\t// }",
+			"",
+			"\t\treturn (",
+			"\t\t\t<View style={styles.container}>",
+			"\t\t\t\t<Text>${2:Hello!}</Text>",
+			"\t\t\t</View>",
+			"\t\t);",
+			"\t}",
+			"}",
+			"",
+			"const styles = StyleSheet.create({",
+			"\tcontainer: {",
+			"\t\tflex: 1,",
+			"\t\tjustifyContent: 'center',",
+			"\t\talignItems: 'center',",
+			"\t},",
+			"});",
+			"",
+			"export default ${1:ComponentName};"
+		],
+		"description": "React Native Class Component with Interface boilerplate"
+	},
+	"React Native Export Default": {
+		"prefix": "gg-export-default",
+		"body": [
+			"export default ${1:ComponentName};"
+		],
+		"description": "Export default component"
+	},
+	"React Native StyleSheet": {
+		"prefix": "gg-sty",
+		"body": [
+			"const styles = StyleSheet.create({",
+			"\t${1:container}: {",
+			"\t\t// TODO!",
+			"\t\t${2}",
+			"\t},",
+			"});"
+		],
+		"description": "React Native StyleSheet boilerplate"
+	},
+	"Inline Style Ref": {
+		"prefix": "gg-in-sty-ref",
+		"body": [
+			"style={styles.${1:container}}"
+		],
+		"description": "Inline style referencing StyleSheet"
+	},
+	"Inline Style Object": {
+		"prefix": "gg-in-sty-obj",
+		"body": [
+			"style={{${1}}}"
+		],
+		"description": "Inline style object"
+	},
+	"React Native Class Constructor": {
+		"prefix": "cc-create-constructor",
+		"body": [
+			"constructor(props: any) {",
+			"\tsuper(props);",
+			"\tconsole.log('1. constructor!');",
+			"\t// todo!",
+			"\t// this.state = {",
+			"\t//   ${1:key}: ${2:value},",
+			"\t// };",
+			"}"
+		],
+		"description": "Class component constructor with state init"
+	},
+	"React Native componentDidMount": {
+		"prefix": "cc-create-mount",
+		"body": [
+			"componentDidMount(): void {",
+			"\tconsole.log('3. did_mount');",
+			"\tthis.setState({ ${1:key}: ${2:value} }); // todo!",
+			"}"
+		],
+		"description": "componentDidMount lifecycle"
+	},
+	"React Native componentDidUpdate": {
+		"prefix": "cc-create-update",
+		"body": [
+			"componentDidUpdate(prevProps: any, prevState: any) {",
+			"\tconsole.log('4. did_update');",
+			"",
+			"\tif (prevState.${1:hasUpdated} === false && this.state.${1:hasUpdated} === true) {",
+			"\t\tsetTimeout(() => {",
+			"\t\t\tthis.setState({",
+			"\t\t\t\t// todo!",
+			"\t\t\t\t${2:key}: ${3:value},",
+			"\t\t\t});",
+			"\t\t}, ${4:2000});",
+			"\t}",
+			"}"
+		],
+		"description": "componentDidUpdate lifecycle with setState"
+	},
+	"Console Log Success": {
+		"prefix": "gg-log-suc",
+		"body": [
+			"console.log('🟢 -> ${1:Message}');"
+		],
+		"description": "Console log success"
+	},
+	"Console Log Error": {
+		"prefix": "gg-log-err",
+		"body": [
+			"console.log('🔴 -> ${1:Message}');"
+		],
+		"description": "Console log error"
+	},
+	"Console Log Warning": {
+		"prefix": "gg-log-warn",
+		"body": [
+			"console.log('🟡 -> ${1:Message}');"
+		],
+		"description": "Console log warning"
+	},
+	"Console Log 1": {
+		"prefix": "gg-log-1",
+		"body": [
+			"console.log('1️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 1"
+	},
+	"Console Log 2": {
+		"prefix": "gg-log-2",
+		"body": [
+			"console.log('2️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 2"
+	},
+	"Console Log 3": {
+		"prefix": "gg-log-3",
+		"body": [
+			"console.log('3️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 3"
+	},
+	"Console Log 4": {
+		"prefix": "gg-log-4",
+		"body": [
+			"console.log('4️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 4"
+	},
+	"Console Log 5": {
+		"prefix": "gg-log-5",
+		"body": [
+			"console.log('5️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 5"
+	},
+	"Console Log 6": {
+		"prefix": "gg-log-6",
+		"body": [
+			"console.log('6️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 6"
+	},
+	"Console Log 7": {
+		"prefix": "gg-log-7",
+		"body": [
+			"console.log('7️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 7"
+	},
+	"Console Log 8": {
+		"prefix": "gg-log-8",
+		"body": [
+			"console.log('8️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 8"
+	},
+	"Console Log 9": {
+		"prefix": "gg-log-9",
+		"body": [
+			"console.log('9️⃣ -> ${1:Message}');"
+		],
+		"description": "Console log step 9"
+	},
+	"Console Log 10": {
+		"prefix": "gg-log-10",
+		"body": [
+			"console.log('🔟 -> ${1:Message}');"
+		],
+		"description": "Console log step 10"
+	},
+	"React Native useEffect": {
+		"prefix": "gg-create-uf-useeffect",
+		"body": [
+			"useEffect(",
+			"() => {",
+			"// todo!",
+			"},",
+			"[",
+			"// todo!",
+			"],",
+			");"
+		],
+		"description": "useEffect hook boilerplate"
+	},
+	"React Native useRef First Render": {
+		"prefix": "gg-create-uf-var-first-render",
+		"body": [
+			"const isFirstRender = useRef(true);"
+		],
+		"description": "useRef for tracking first render"
+	},
+	"React Native useState": {
+		"prefix": "gg-create-uf-var",
+		"body": [
+			"const [${1:state}, set${2:State}] = useState(${3:'initial'});"
+		],
+		"description": "useState hook boilerplate"
+	},
+	"React Native useEffect Full": {
+		"prefix": "gg-create-uf-useeffect-full",
+		"body": [
+			"useEffect(() => {",
+			"if (isFirstRender.current) {",
+			"console.log('🟢 did_mount');",
+			"isFirstRender.current = false;",
+			"",
+			"// 🔥",
+			"setTimeout(() => {",
+			"set${1:State}(${2:'value'});",
+			"}, ${3:2000});",
+			"} else {",
+			"console.log('🟡 did_update');",
+			"}",
+			"}, [${4:dependency}]);"
+		],
+		"description": "useEffect with first render check"
+	},
+	"Nav Create Var Navigation": {
+		"prefix": "gg-nav-create-var-navigation",
+		"body": [
+			"const navigation = useNavigation();"
+		],
+		"description": "Create useNavigation variable"
+	},
+	"Nav Create Handle Press": {
+		"prefix": "gg-nav-create-handle-press",
+		"body": [
+			"const handlePress = () => {",
+			"\tnavigation.navigate('${1:Details}');",
+			"};"
+		],
+		"description": "Create navigation handlePress function"
+	},
+	"Create Var Array Object": {
+		"prefix": "gg-create-var-array-object",
+		"body": [
+			"const ${1:name}Data = [",
+			"\t{",
+			"\t\ttitle: '${2:Title}',",
+			"\t\taddress: '${3:Address}',",
+			"\t\tprice: '${4:\\$0/day}',",
+			"\t\timage: require('${5:../../../assets/images/image.png}'),",
+			"\t},",
+			"];"
+		],
+		"description": "Create array of objects variable"
+	},
+	"Create Var String": {
+		"prefix": "gg-create-var-string",
+		"body": [
+			"const ${1:name} = '${2:value}';"
+		],
+		"description": "Create string variable"
+	},
+	"Create Var String Array": {
+		"prefix": "gg-create-var-string-array",
+		"body": [
+			"const ${1:name} = [",
+			"\t'${2}',",
+			"\t'${3}',",
+			"];"
+		],
+		"description": "Create string array variable"
+	},
+	"Source Image Local": {
+		"prefix": "gg-source-image-local",
+		"body": [
+			"source={require('${1:../../../assets/images/image.png}')}"
+		],
+		"description": "Image source from local assets"
+	},
+	"Source Image Internet": {
+		"prefix": "gg-source-image-internet",
+		"body": [
+			"source={{uri: '${1:https://}'  }}"
+		],
+		"description": "Image source from internet URI"
+	},
+	"Create Render Variable View": {
+		"prefix": "gg-create-render-variable-view",
+		"body": [
+			"{render${1:Name}()}"
+		],
+		"description": "Render variable view function call"
+	},
+	"Create Render View Generate": {
+		"prefix": "gg-create-render-view-generate",
+		"body": [
+			"const render${1:Name} = () => {",
+			"\treturn (",
+			"\t\t<View>",
+			"\t\t\t<Text>${2:Hi!}</Text>",
+			"\t\t</View>",
+			"\t);",
+			"};"
+		],
+		"description": "Create render view function"
+	},
+	"Create React Native View": {
+		"prefix": "gg-create-view",
+		"body": [
+			"import React from 'react';",
+			"import { StyleSheet, Text, View } from 'react-native';",
+			"",
+			"const ${1:Name}View = () => {",
+			"\treturn (",
+			"\t\t<View style={styles.container}>",
+			"\t\t\t<Text>${2:Hi!}</Text>",
+			"\t\t</View>",
+			"\t);",
+			"};",
+			"",
+			"const styles = StyleSheet.create({",
+			"\tcontainer: {",
+			"\t\tflex: 1,",
+			"\t\tjustifyContent: 'center',",
+			"\t\talignItems: 'center',",
+			"\t},",
+			"});",
+			"",
+			"export default ${1:Name}View;"
+		],
+		"description": "Create React Native functional component with StyleSheet"
+	},
+	"Tag View": {
+		"prefix": "view",
+		"body": ["<View>${1}</View>"],
+		"description": "RN <View></View>"
+	},
+	"Tag View Style": {
+		"prefix": "views",
+		"body": ["<View style={styles.${1:container}}>${2}</View>"],
+		"description": "RN <View> with style"
+	},
+	"Tag Text": {
+		"prefix": "text",
+		"body": ["<Text>${1}</Text>"],
+		"description": "RN <Text></Text>"
+	},
+	"Tag Text Style": {
+		"prefix": "texts",
+		"body": ["<Text style={styles.${1:text}}>${2}</Text>"],
+		"description": "RN <Text> with style"
+	},
+	"Tag ScrollView": {
+		"prefix": "scrollview",
+		"body": ["<ScrollView>${1}</ScrollView>"],
+		"description": "RN <ScrollView></ScrollView>"
+	},
+	"Tag SafeAreaView": {
+		"prefix": "safeareaview",
+		"body": ["<SafeAreaView style={styles.${1:container}}>${2}</SafeAreaView>"],
+		"description": "RN <SafeAreaView>"
+	},
+	"Tag TouchableOpacity": {
+		"prefix": "touchableopacity",
+		"body": [
+			"<TouchableOpacity onPress={${1:onPress}}>",
+			"\t${2}",
+			"</TouchableOpacity>"
+		],
+		"description": "RN <TouchableOpacity>"
+	},
+	"Tag Pressable": {
+		"prefix": "pressable",
+		"body": [
+			"<Pressable onPress={${1:onPress}}>",
+			"\t${2}",
+			"</Pressable>"
+		],
+		"description": "RN <Pressable>"
+	},
+	"Tag Image": {
+		"prefix": "image",
+		"body": ["<Image source={${1:source}} style={styles.${2:image}} />"],
+		"description": "RN <Image />"
+	},
+	"Tag TextInput": {
+		"prefix": "textInput",
+		"body": [
+			"<TextInput",
+			"\tvalue={${1:value}}",
+			"\tonChangeText={${2:onChangeText}}",
+			"\tplaceholder=\"${3:Placeholder}\"",
+			"\tstyle={styles.${4:input}}",
+			"/>"
+		],
+		"description": "RN <TextInput />"
+	},
+	"Tag FlatList": {
+		"prefix": "flatList",
+		"body": [
+			"<FlatList",
+			"\tdata={${1:data}}",
+			"\tkeyExtractor={(item, index) => index.toString()}",
+			"\trenderItem={({ item }) => (",
+			"\t\t${2:<Text>{item}</Text>}",
+			"\t)}",
+			"/>"
+		],
+		"description": "RN <FlatList />"
+	},
+	"Tag Button": {
+		"prefix": "button",
+		"body": ["<Button title=\"${1:Title}\" onPress={${2:onPress}} />"],
+		"description": "RN <Button />"
+	},
+	"Tag ActivityIndicator": {
+		"prefix": "activityindicator",
+		"body": ["<ActivityIndicator size=\"${1:large}\" color=\"${2:#000}\" />"],
+		"description": "RN <ActivityIndicator />"
+	},
+	"Tag Switch": {
+		"prefix": "switch",
+		"body": ["<Switch value={${1:value}} onValueChange={${2:onValueChange}} />"],
+		"description": "RN <Switch />"
+	},
+	"Tag KeyboardAvoidingView": {
+		"prefix": "keyboardavoidingview",
+		"body": [
+			"<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.${1:container}}>",
+			"\t${2}",
+			"</KeyboardAvoidingView>"
+		],
+		"description": "RN <KeyboardAvoidingView>"
+	}
+}

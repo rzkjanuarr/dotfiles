@@ -12,6 +12,33 @@ local M = {
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, { "html", "eslint", "cssls", "emmet_ls", "jsonls", "ts_ls" })
+      -- aktifkan emmet_ls untuk React Native (JSX/TSX) + file .ts/.js polos
+      -- dibungkus vim.schedule agar dijalankan setelah auto-lsp setup (menang override)
+      vim.schedule(function()
+        vim.lsp.config("emmet_ls", {
+          filetypes = {
+            "astro",
+            "css",
+            "eruby",
+            "html",
+            "htmlangular",
+            "htmldjango",
+            "javascript",
+            "javascriptreact",
+            "less",
+            "pug",
+            "sass",
+            "scss",
+            "svelte",
+            "templ",
+            "typescript",
+            "typescriptreact",
+            "vue",
+            "php",
+          },
+        })
+        pcall(vim.lsp.enable, "emmet_ls")
+      end)
     end,
   },
   {

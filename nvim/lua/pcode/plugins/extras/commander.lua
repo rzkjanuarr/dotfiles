@@ -7,9 +7,20 @@
 return {
   "FeiyouG/commander.nvim",
   dependencies = { "nvim-telescope/telescope.nvim" },
-  cmd = { "Telescope" },
   keys = {
-    { "<leader>fk", "<CMD>Telescope commander<CR>", mode = "n", desc = "Commander: hub command" },
+    {
+      -- JANGAN pakai `cmd = {"Telescope"}`: lazy mengira plugin ini yang
+      -- menyediakan :Telescope (padahal punya telescope), akibatnya commander
+      -- tak pernah ter-load dan `:Telescope commander` = Not an editor command.
+      -- Panggil lewat fungsi supaya plugin dimuat dulu, baru extension dijalankan.
+      "<leader>fk",
+      function()
+        require("lazy").load({ plugins = { "commander.nvim" } })
+        require("telescope").extensions.commander.commander({})
+      end,
+      mode = "n",
+      desc = "Commander: hub command",
+    },
     -- pemicu load untuk file-ops (biar keymap langsung jalan tanpa buka commander dulu)
     { "<leader>fN", "<CMD>NewFile<CR>", mode = "n", desc = "File: buat baru" },
     { "<leader>fD", "<CMD>DeleteFile<CR>", mode = "n", desc = "File: hapus" },

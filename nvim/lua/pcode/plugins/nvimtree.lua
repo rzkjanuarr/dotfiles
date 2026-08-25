@@ -315,6 +315,15 @@ else
       },
 
       filesystem = {
+        -- Auto-refresh pakai file watcher OS: file yang dibuat/dihapus dari
+        -- LUAR nvim (terminal, flutter create/pub get, git checkout) langsung
+        -- muncul di sidebar tanpa perlu refresh manual.
+        use_libuv_file_watcher = true,
+        -- sidebar otomatis menyorot file yang sedang dibuka
+        follow_current_file = {
+          enabled = true,
+          leave_dirs_open = false,
+        },
         filtered_items = {
           visible = false,
           hide_dotfiles = false,
