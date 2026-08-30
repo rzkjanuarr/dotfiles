@@ -1,0 +1,20 @@
+{
+  "flatlist-std": {
+    "description": "Saved from visual selection",
+    "body": [
+      "<FlatList",
+      "          horizontal={true}",
+      "          numColumns={2}",
+      "          data={data}",
+      "          keyExtractor={item => item.id.toString()}",
+      "          renderItem={({ item }) => (",
+      "            <View>",
+      "              <Text>hi, flatlist!</Text>",
+      "            </View>",
+      "          )}",
+      "        />"
+    ],
+    "prefix": "flatlist-std"
+  }
+}
+

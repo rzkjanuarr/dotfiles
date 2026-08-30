@@ -383,3 +383,48 @@ vim.api.nvim_create_user_command("OpenBrowser", function(opts)
 
   vim.fn.jobstart({ open_cmd, url }, { detach = true })
 end, { nargs = "?", complete = "file" })
+
+-- =====================================================
+-- DISABLE LSP HOVER (biar gak ganggu di style={{}})
+-- =====================================================
+-- 1. Disable hover handler
+-- vim.lsp.handlers["textDocument/hover"] = function() end -- ON lagi: hover dipakai lewat <leader>k
+
+-- 2. Unmap K setelah LSP attach + Auto Import keymap
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    -- Hapus keymap K untuk hover
+    pcall(vim.keymap.del, "n", "K", { buffer = bufnr })
+
+    -- Matikan hoverProvider di client sekunder biar popup hover gak dobel.
+    -- (emmet_ls/tailwindcss/html/cssls/jsonls/eslint juga jawab hover -> looping 2x)
+    local hover_skip = {
+      emmet_ls = true,
+      tailwindcss = true,
+      html = true,
+      cssls = true,
+      jsonls = true,
+      eslint = true,
+    }
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and hover_skip[client.name] and client.server_capabilities then
+      client.server_capabilities.hoverProvider = false
+    end
+
+    -- LSP Hover pakai <leader>k (K tetap nonaktif biar gak ganggu di style={{}})
+    vim.keymap.set("n", "<leader>k", function()
+      vim.lsp.buf.hover()
+    end, { buffer = bufnr, desc = "LSP Hover" })
+
+    -- Auto Import: <leader>i (langsung apply tanpa menu)
+    vim.keymap.set("n", "<leader>i", function()
+      vim.lsp.buf.code_action({
+        apply = true,
+        filter = function(action)
+          return action.title:match("[Ii]mport")
+        end,
+      })
+    end, { buffer = bufnr, desc = "Auto Import" })
+  end,
+})

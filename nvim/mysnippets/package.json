@@ -44,6 +44,14 @@
       {
         "language": "dart",
         "path": "./flutter/template.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./typescriptreact/snippets.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./javascript/snippets.json"
       }
     ]
   }

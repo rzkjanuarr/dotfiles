@@ -33,6 +33,9 @@ link "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
 echo "==> nvim"
 link "$DOTFILES/nvim" "$HOME/.config/nvim"
 
+echo "==> prettier (global config)"
+link "$DOTFILES/.prettierrc" "$HOME/.prettierrc"
+
 echo "==> starship (via STARSHIP_CONFIG di .zshrc, tidak perlu symlink)"
 
 echo "==> scripts (symlink ke ~/ agar path lama tetap jalan)"

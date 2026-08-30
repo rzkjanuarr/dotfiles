@@ -62,7 +62,7 @@ pcode.extras = {
 pcode.themes = {
   -- note: open remark only one
   -- **:: Eva Theme ::** --
-  -- evatheme = "Eva-Dark",
+  evatheme = "Eva-Dark",
   -- evatheme = "Eva-Dark-Italic",
   -- evatheme = "Eva-Dark-Bold",
   -- evatheme = "Eva-Light",
@@ -96,13 +96,13 @@ pcode.themes = {
   -- catppuccin = "catppuccin-macchiato",
   --
   -- **:: Gruvbox Theme ::** --
-  gruvbox = "gruvbox",
+  -- gruvbox = "gruvbox",
 
   -- **:: Github Theme ::** --
   -- github = "github_dark_dimmed",
 }
 -- activate config transparent_bg
-pcode.transparent = true
+pcode.transparent = false
 pcode.localcode = true
 pcode.snippets_path = vim.fn.stdpath("config") .. "/mysnippets"
 pcode.use_nvimtree = false -- pakai neo-tree (sidebar bertumpuk: FILES + GIT STATUS ala VSCode)

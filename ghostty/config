@@ -24,7 +24,7 @@ font-thicken = true
 theme = Catppuccin Mocha
 
 # ─── Window / visual ───────────────────────────────
-background-opacity = 0.15
+background-opacity = 0.80
 background-blur-radius = 20
 mouse-hide-while-typing = true
 # Tab bar butuh titlebar. macos-titlebar-style=tabs bikin tab nyatu ke titlebar

@@ -1,6 +1,51 @@
 {
+  "textInput2-multiline": {
+    "description": "Saved from visual selection",
+    "body": [
+      "<TextInput",
+      "        style={{",
+      "          borderWidth: 1,",
+      "          borderColor: 'grey',",
+      "          width: '100%',",
+      "          minHeight: 100,",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 10,",
+      "          textAlignVertical: 'top',",
+      "        }}",
+      "        keyboardType=\"default\"",
+      "        placeholder=\"Default Multiline\"",
+      "        placeholderTextColor=\"grey\"",
+      "        maxLength={220}",
+      "        multiline={true}",
+      "      />"
+    ],
+    "prefix": "textInput2-multiline"
+  },
+  "textInput7-decimal": {
+    "description": "Saved from visual selection",
+    "body": [
+      "<TextInput",
+      "        style={{",
+      "          borderWidth: 1,",
+      "          borderColor: 'grey',",
+      "          width: '100%',",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 10,",
+      "        }}",
+      "        keyboardType=\"decimal-pad\"",
+      "        placeholder=\"Decimal Pad\"",
+      "        placeholderTextColor=\"grey\"",
+      "      />"
+    ],
+    "prefix": "textInput7-decimal"
+  },
+  "function": {
+    "description": "function",
+    "body": ["function $1($2) {", "$0", "}"],
+    "prefix": "function"
+  },
   "author": {
-    "prefix": "@author",
+    "description": "Komentar Author",
     "body": [
       "/*",
       "Author  = Pojok Code",
@@ -13,21 +58,107 @@
       "*/",
       "$1"
     ],
-    "description": "Komentar Author"
+    "prefix": "@author"
   },
   "/*": {
-    "prefix": "/*",
+    "description": "Komentar",
     "body": ["/*", "* $1", "*/"],
-    "description": "Komentar"
+    "prefix": "/*"
+  },
+  "textInput4-password": {
+    "description": "Saved from visual selection",
+    "body": [
+      "<TextInput",
+      "        style={{",
+      "          borderWidth: 1,",
+      "          borderColor: 'grey',",
+      "          width: '100%',",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 10,",
+      "        }}",
+      "        secureTextEntry={true}",
+      "        placeholder=\"Password\"",
+      "        placeholderTextColor=\"grey\"",
+      "      />"
+    ],
+    "prefix": "textInput4-password"
+  },
+  "textInput3-email": {
+    "description": "Saved from visual selection",
+    "body": [
+      "<TextInput",
+      "        style={{",
+      "          borderWidth: 1,",
+      "          borderColor: 'grey',",
+      "          width: '100%',",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 10,",
+      "        }}",
+      "        keyboardType=\"email-address\"",
+      "        placeholder=\"Email\"",
+      "        placeholderTextColor=\"grey\"",
+      "      />"
+    ],
+    "prefix": "textInput3-email"
   },
   "/": {
-    "prefix": "/",
+    "description": "Komentar",
     "body": "// $1",
-    "description": "Komentar"
+    "prefix": "/"
   },
-  "function": {
-    "prefix": "function",
-    "body": ["function $1($2) {", "$0", "}"],
-    "description": "function"
+  "textInput1-default": {
+    "description": "Saved from visual selection",
+    "body": [
+      " <TextInput",
+      "        style={{",
+      "          borderWidth: 1,",
+      "          borderColor: 'grey',",
+      "          width: '100%',",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 10,",
+      "        }}",
+      "        keyboardType=\"default\"",
+      "        placeholder=\"Default TextInput\"",
+      "        placeholderTextColor=\"grey\"",
+      "        maxLength={10}",
+      "      />"
+    ],
+    "prefix": "textInput1-default"
+  },
+  "textInput5-number": {
+    "description": "Saved from visual selection",
+    "body": [
+      "<TextInput",
+      "        style={{",
+      "          borderWidth: 1,",
+      "          borderColor: 'grey',",
+      "          width: '100%',",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 10,",
+      "        }}",
+      "        keyboardType=\"number-pad\"",
+      "        placeholder=\"Number Pad\"",
+      "        placeholderTextColor=\"grey\"",
+      "      />"
+    ],
+    "prefix": "textInput5-number"
+  },
+  "textInput6-numeric": {
+    "description": "Saved from visual selection",
+    "body": [
+      "<TextInput",
+      "        style={{",
+      "          borderWidth: 1,",
+      "          borderColor: 'grey',",
+      "          width: '100%',",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 10,",
+      "        }}",
+      "        keyboardType=\"numeric\"",
+      "        placeholder=\"Numeric\"",
+      "        placeholderTextColor=\"grey\"",
+      "      />"
+    ],
+    "prefix": "textInput6-numeric"
   }
 }
