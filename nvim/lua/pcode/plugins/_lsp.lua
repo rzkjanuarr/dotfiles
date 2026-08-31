@@ -83,6 +83,8 @@ return {
       opts.ensure_installed = opts.ensure_installed or {}
       opts.automatic_installation = true
       vim.list_extend(opts.ensure_installed, { "lua_ls" })
+      -- vtsls orphan (keinstall di mason, nggak dipakai); pakai ts_ls aja.
+      vim.list_extend(opts.skip_config, { "vtsls" })
       opts.format_on_save = true -- if use none-ls set true
       opts.virtual_text = true
       opts.timeout_ms = 5000

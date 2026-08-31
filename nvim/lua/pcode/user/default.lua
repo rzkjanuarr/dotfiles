@@ -102,7 +102,7 @@ pcode.themes = {
   -- github = "github_dark_dimmed",
 }
 -- activate config transparent_bg
-pcode.transparent = false
+pcode.transparent = true
 pcode.localcode = true
 pcode.snippets_path = vim.fn.stdpath("config") .. "/mysnippets"
 pcode.use_nvimtree = false -- pakai neo-tree (sidebar bertumpuk: FILES + GIT STATUS ala VSCode)

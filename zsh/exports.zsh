@@ -43,7 +43,12 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # ─── Java (default v17) ────────────────────────────
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+_java_home_17="$(/usr/libexec/java_home -v 17 2>/dev/null)"
+if [ -n "$_java_home_17" ]; then
+  export JAVA_HOME="$_java_home_17"
+  export PATH="$JAVA_HOME/bin:$PATH"
+fi
+unset _java_home_17
 
 # ─── PHP (default: latest) ─────────────────────────
 export PATH="/opt/homebrew/opt/php/bin:$PATH"
@@ -61,7 +66,7 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 # ─── Claude Code (custom endpoint) ─────────────────
 export ANTHROPIC_BASE_URL="https://api.aihack.web.id/v1"
 export ANTHROPIC_API_KEY="sk-4d759057d9d093f2"
-export ANTHROPIC_MODEL="claude-opus-4.6"
+export ANTHROPIC_MODEL="claude-opus-4.8"
 
 # ─── Editor ────────────────────────────────────────
 export EDITOR="nvim"

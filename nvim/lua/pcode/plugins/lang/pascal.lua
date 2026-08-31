@@ -9,15 +9,14 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      -- Kita setup pasls secara manual. 
-      -- Ini akan jalan jika binary 'pasls' ada di PATH sistem kamu.
-      local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
-      if lspconfig_ok then
-        lspconfig.pasls.setup({
-          -- cmd = { "pasls" }, -- ganti path jika binary ada di lokasi spesifik
+      -- Setup pasls manual (bukan paket mason). Jalan kalau binary 'pasls' ada di PATH.
+      -- vim.schedule biar jalan setelah auto-lsp setup (override menang).
+      vim.schedule(function()
+        vim.lsp.config("pasls", {
           filetypes = { "pascal", "pp", "inc" },
         })
-      end
+        pcall(vim.lsp.enable, "pasls")
+      end)
     end,
   },
   {
