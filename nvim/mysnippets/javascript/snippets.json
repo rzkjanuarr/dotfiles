@@ -1,6 +1,102 @@
 {
+  "button-settings": {
+    "description": "Saved from visual selection",
+    "prefix": "button-settings",
+    "body": [
+      " const onPressSetting = async () => {",
+      "    await Linking.openSettings();",
+      "  };",
+      "",
+      "      <TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "          flexDirection: 'row',",
+      "          alignItems: 'center',",
+      "          justifyContent: 'center',",
+      "        }}",
+      "        onPress={onPressSetting}>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            fontWeight: 'bold',",
+      "            marginRight: 7,",
+      "          }}>",
+      "          Go to settings!",
+      "        </Text>",
+      "      </TouchableOpacity>"
+    ]
+  },
+  "1-button-default": {
+    "description": "Saved from visual selection",
+    "prefix": "1-button-default",
+    "body": [
+      "<TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "        }}",
+      "        onPress={() => console.log('hi!')}>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            textAlign: 'center',",
+      "            fontWeight: 'bold',",
+      "          }}>",
+      "          hi!",
+      "        </Text>",
+      "      </TouchableOpacity>"
+    ]
+  },
+  "button-telp": {
+    "description": "Saved from visual selection",
+    "prefix": "button-telp",
+    "body": [
+      "const makeCall = async () => {",
+      "    const phoneNumber = '085749463854';",
+      "    const URL = `tel:${phoneNumber}`;",
+      "    const supportedURL = await Linking.canOpenURL(URL);",
+      "",
+      "    if (supportedURL) {",
+      "      await Linking.openURL(URL);",
+      "      console.log('suc!');",
+      "    } else {",
+      "      Alert.alert('gak bisa buka URL!');",
+      "    }",
+      "  };",
+      "",
+      "      <TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "          flexDirection: 'row',",
+      "          alignItems: 'center',",
+      "          justifyContent: 'center',",
+      "        }}",
+      "        onPress={makeCall}>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            fontWeight: 'bold',",
+      "            marginRight: 7,",
+      "          }}>",
+      "          Make a call!",
+      "        </Text>",
+      "      </TouchableOpacity>"
+    ]
+  },
   "textInput2-multiline": {
     "description": "Saved from visual selection",
+    "prefix": "textInput2-multiline",
     "body": [
       "<TextInput",
       "        style={{",
@@ -18,11 +114,128 @@
       "        maxLength={220}",
       "        multiline={true}",
       "      />"
-    ],
-    "prefix": "textInput2-multiline"
+    ]
+  },
+  "button-email": {
+    "description": "Saved from visual selection",
+    "prefix": "button-email",
+    "body": [
+      "const onPressEmail = async () => {",
+      "    const email = 'rizkijanuar.work@gmail.com';",
+      "    const subject = encodeURIComponent('title');",
+      "    const body = encodeURIComponent('body');",
+      "    const URL = `mailto:${email}?subject=${subject}&body=${body}`;",
+      "    const supported = await Linking.canOpenURL(URL);",
+      "",
+      "    if (supported) {",
+      "      await Linking.openURL(URL);",
+      "      console.log('suc!');",
+      "    } else {",
+      "      Alert.alert('gak bisa buka url!');",
+      "      console.log('gagal!');",
+      "    }",
+      "  };",
+      "",
+      "      <TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "          flexDirection: 'row',",
+      "          alignItems: 'center',",
+      "          justifyContent: 'center',",
+      "        }}",
+      "        onPress={onPressEmail}>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            fontWeight: 'bold',",
+      "            marginRight: 7,",
+      "          }}>",
+      "          Email to!",
+      "        </Text>",
+      "      </TouchableOpacity>"
+    ]
+  },
+  "textInput5-number": {
+    "description": "Saved from visual selection",
+    "prefix": "textInput5-number",
+    "body": [
+      "<TextInput",
+      "        style={{",
+      "          borderWidth: 1,",
+      "          borderColor: 'grey',",
+      "          width: '100%',",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 10,",
+      "        }}",
+      "        keyboardType=\"number-pad\"",
+      "        placeholder=\"Number Pad\"",
+      "        placeholderTextColor=\"grey\"",
+      "      />"
+    ]
+  },
+  "alert": {
+    "description": "Saved from visual selection",
+    "prefix": "alert",
+    "body": [
+      "const onPressTwoOptionsAlert = () => {",
+      "    Alert.alert('Title', 'Subtitle', [",
+      "      {",
+      "        text: 'OK',",
+      "        onPress: () => console.log('OK!'),",
+      "      },",
+      "      {",
+      "        text: 'CANCEL!',",
+      "        onPress: () => console.log('CANCEL!'),",
+      "      },",
+      "    ]);",
+      "  };",
+      "",
+      "  const onPressThreeOptionsAlert = () => {",
+      "    Alert.alert('Title', 'Subtitle', [",
+      "      {",
+      "        text: 'JANCOK 1',",
+      "        onPress: () => console.log('JANCOK 1'),",
+      "      },",
+      "      {",
+      "        text: 'JANCOK 2',",
+      "        onPress: () => console.log('JANCOK 2'),",
+      "      },",
+      "      {",
+      "        text: 'JANCOK 3',",
+      "        onPress: () => console.log('JANCOK 3'),",
+      "      },",
+      "    ]);",
+      "  };",
+      "  return (",
+      "    <View style={{}}>",
+      "      <Pressable onPress={onPressTwoOptionsAlert}>",
+      "        <Text> 2 alert!</Text>",
+      "      </Pressable>",
+      "      <Pressable onPress={onPressThreeOptionsAlert}>",
+      "        <Text> 3 alert!</Text>",
+      "      </Pressable>",
+      "    </View>",
+      "  );"
+    ]
+  },
+  "shadow": {
+    "description": "Saved from visual selection",
+    "prefix": "shadow",
+    "body": [
+      " shadowColor: '#000',",
+      "            elevation: 4,",
+      "            shadowOffset: { width: 0, height: 10 },",
+      "            shadowOpacity: 0.1,",
+      "            shadowRadius: 4,"
+    ]
   },
   "textInput7-decimal": {
     "description": "Saved from visual selection",
+    "prefix": "textInput7-decimal",
     "body": [
       "<TextInput",
       "        style={{",
@@ -36,16 +249,16 @@
       "        placeholder=\"Decimal Pad\"",
       "        placeholderTextColor=\"grey\"",
       "      />"
-    ],
-    "prefix": "textInput7-decimal"
+    ]
   },
   "function": {
     "description": "function",
-    "body": ["function $1($2) {", "$0", "}"],
-    "prefix": "function"
+    "prefix": "function",
+    "body": ["function $1($2) {", "$0", "}"]
   },
   "author": {
     "description": "Komentar Author",
+    "prefix": "@author",
     "body": [
       "/*",
       "Author  = Pojok Code",
@@ -57,34 +270,65 @@
       "note    = Penyalahgunaan kode ini bukan tanggung jawab pojok code",
       "*/",
       "$1"
-    ],
-    "prefix": "@author"
+    ]
   },
-  "/*": {
-    "description": "Komentar",
-    "body": ["/*", "* $1", "*/"],
-    "prefix": "/*"
-  },
-  "textInput4-password": {
+  "alert-custom": {
     "description": "Saved from visual selection",
+    "prefix": "alert-custom",
     "body": [
-      "<TextInput",
-      "        style={{",
-      "          borderWidth: 1,",
-      "          borderColor: 'grey',",
-      "          width: '100%',",
-      "          paddingVertical: 12,",
-      "          paddingHorizontal: 10,",
-      "        }}",
-      "        secureTextEntry={true}",
-      "        placeholder=\"Password\"",
-      "        placeholderTextColor=\"grey\"",
-      "      />"
-    ],
-    "prefix": "textInput4-password"
+      "<Pressable onPress={() => setVisible(true)}>",
+      "        <Text> custom alert!</Text>",
+      "      </Pressable>",
+      "",
+      "      <Modal",
+      "        visible={visible}",
+      "        transparent",
+      "        animationType=\"fade\"",
+      "        onRequestClose={() => setVisible(false)}>",
+      "        <View",
+      "          style={{",
+      "            flex: 1,",
+      "            justifyContent: 'center',",
+      "            alignItems: 'center',",
+      "            backgroundColor: 'rgba(0,0,0,0.3)',",
+      "          }}>",
+      "          <View",
+      "            style={{",
+      "              width: 300,",
+      "              padding: 20,",
+      "              borderRadius: 12,",
+      "              backgroundColor: '#fff',",
+      "            }}>",
+      "            <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 8 }}>",
+      "              Title",
+      "            </Text>",
+      "            <Text style={{ marginBottom: 20 }}>Subtitle</Text>",
+      "",
+      "            <View",
+      "              style={{",
+      "                flexDirection: 'row',",
+      "                justifyContent: 'flex-end',",
+      "                gap: 12,",
+      "              }}>",
+      "              <Pressable onPress={() => setVisible(false)}>",
+      "                <Text style={{ color: 'red' }}>CANCEL</Text>",
+      "              </Pressable>",
+      "              <Pressable",
+      "                onPress={() => {",
+      "                  console.log('OK!');",
+      "                  setVisible(false);",
+      "                }}>",
+      "                <Text style={{ color: '#1479ca' }}>OK</Text>",
+      "              </Pressable>",
+      "            </View>",
+      "          </View>",
+      "        </View>",
+      "      </Modal>"
+    ]
   },
   "textInput3-email": {
     "description": "Saved from visual selection",
+    "prefix": "textInput3-email",
     "body": [
       "<TextInput",
       "        style={{",
@@ -98,16 +342,32 @@
       "        placeholder=\"Email\"",
       "        placeholderTextColor=\"grey\"",
       "      />"
-    ],
-    "prefix": "textInput3-email"
+    ]
   },
-  "/": {
-    "description": "Komentar",
-    "body": "// $1",
-    "prefix": "/"
+  "switch": {
+    "description": "Saved from visual selection",
+    "prefix": "switch",
+    "body": [
+      " const [isEnabled, setIsEnabled] = useState(false);",
+      "  const actionSwitch = () => setIsEnabled((previousState) => !previousState);",
+      "",
+      "    <View style={{}}>",
+      "      <Switch",
+      "        onValueChange={actionSwitch}",
+      "        value={isEnabled}",
+      "        trackColor={{ false: 'red' }}",
+      "      />",
+      "    </View>"
+    ]
+  },
+  "sty-create": {
+    "description": "Saved from visual selection",
+    "prefix": "sty-create",
+    "body": ["const styles = StyleSheet.create({ $1 });"]
   },
   "textInput1-default": {
     "description": "Saved from visual selection",
+    "prefix": "textInput1-default",
     "body": [
       " <TextInput",
       "        style={{",
@@ -122,11 +382,16 @@
       "        placeholderTextColor=\"grey\"",
       "        maxLength={10}",
       "      />"
-    ],
-    "prefix": "textInput1-default"
+    ]
   },
-  "textInput5-number": {
+  "/": {
+    "description": "Komentar",
+    "prefix": "/",
+    "body": "// $1"
+  },
+  "textInput4-password": {
     "description": "Saved from visual selection",
+    "prefix": "textInput4-password",
     "body": [
       "<TextInput",
       "        style={{",
@@ -136,15 +401,88 @@
       "          paddingVertical: 12,",
       "          paddingHorizontal: 10,",
       "        }}",
-      "        keyboardType=\"number-pad\"",
-      "        placeholder=\"Number Pad\"",
+      "        secureTextEntry={true}",
+      "        placeholder=\"Password\"",
       "        placeholderTextColor=\"grey\"",
       "      />"
-    ],
-    "prefix": "textInput5-number"
+    ]
+  },
+  "button-share": {
+    "description": "Saved from visual selection",
+    "prefix": "button-share",
+    "body": [
+      " const onShare = async () => {",
+      "    try {",
+      "      await Share.share({",
+      "        message: 'Sharing Method!',",
+      "        url: 'www.google.com',",
+      "      });",
+      "    } catch (error) {",
+      "      Alert.alert(error.message);",
+      "    }",
+      "  };",
+      "      <TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "          flexDirection: 'row',",
+      "          alignItems: 'center',",
+      "          justifyContent: 'center',",
+      "        }}",
+      "        onPress={onShare}>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            fontWeight: 'bold',",
+      "            marginRight: 7,",
+      "          }}>",
+      "          Share",
+      "        </Text>",
+      "      </TouchableOpacity>"
+    ]
+  },
+  "button-openURL": {
+    "description": "Saved from visual selection",
+    "prefix": "button-openURL",
+    "body": [
+      "  const onPressURL = () => {",
+      "    const URL = 'rzkjanuarr-com.vercel.app/';",
+      "    const supportedURL = Linking.canOpenURL(URL);",
+      "    if (supportedURL) {",
+      "      Linking.openURL(URL);",
+      "    } else {",
+      "      Alert.alert('gak bisa buka URL!');",
+      "    }",
+      "  };",
+      "      <TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "          flexDirection: 'row',",
+      "          alignItems: 'center',",
+      "          justifyContent: 'center',",
+      "        }}",
+      "        onPress={onPressURL}>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            fontWeight: 'bold',",
+      "            marginRight: 7,",
+      "          }}>",
+      "          Open URL!",
+      "        </Text>",
+      "      </TouchableOpacity>"
+    ]
   },
   "textInput6-numeric": {
     "description": "Saved from visual selection",
+    "prefix": "textInput6-numeric",
     "body": [
       "<TextInput",
       "        style={{",
@@ -158,7 +496,111 @@
       "        placeholder=\"Numeric\"",
       "        placeholderTextColor=\"grey\"",
       "      />"
+    ]
+  },
+  "2-button-with-icon-right": {
+    "description": "Saved from visual selection",
+    "prefix": "2-button-with-icon-right",
+    "body": [
+      " <TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "          flexDirection: 'row',",
+      "          alignItems: 'center',",
+      "        }}",
+      "        onPress={() => console.log('hi!')}>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            fontWeight: 'bold',",
+      "            flex: 1,",
+      "          }}>",
+      "          click!",
+      "        </Text>",
+      "        <PackageCheck color=\"white\" />",
+      "      </TouchableOpacity>"
+    ]
+  },
+  "3-button-with-icon-left": {
+    "description": "Saved from visual selection",
+    "prefix": "3-button-with-icon-left",
+    "body": [
+      "<TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "          flexDirection: 'row',",
+      "          alignItems: 'center',",
+      "        }}",
+      "        onPress={() => console.log('hi!')}>",
+      "        <View style={{ flex: 1 }}>",
+      "          <PackageCheck color=\"white\" />",
+      "        </View>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            fontWeight: 'bold',",
+      "          }}>",
+      "          click!",
+      "        </Text>",
+      "      </TouchableOpacity>"
+    ]
+  },
+  "4-button-with-icon-center": {
+    "description": "Saved from visual selection",
+    "prefix": "4-button-with-icon-center",
+    "body": [
+      "<TouchableOpacity",
+      "        style={{",
+      "          paddingVertical: 12,",
+      "          paddingHorizontal: 20,",
+      "          backgroundColor: 'black',",
+      "          width: '100%',",
+      "          flexDirection: 'row',",
+      "          alignItems: 'center',",
+      "          justifyContent: 'center',",
+      "        }}",
+      "        onPress={() => console.log('hi!')}>",
+      "        <Text",
+      "          style={{",
+      "            fontSize: 12,",
+      "            color: 'white',",
+      "            fontWeight: 'bold',",
+      "            marginRight: 7,",
+      "          }}>",
+      "          click!",
+      "        </Text>",
+      "        <PackageCheck color=\"white\" />",
+      "      </TouchableOpacity>"
+    ]
+  },
+  "/*": {
+    "description": "Komentar",
+    "prefix": "/*",
+    "body": ["/*", "* $1", "*/"]
+  },
+  "flatlist-std": {
+    "description": "Saved from visual selection",
+    "body": [
+      "<FlatList",
+      "          horizontal={true}",
+      "          numColumns={2}",
+      "          data={data}",
+      "          keyExtractor={item => item.id.toString()}",
+      "          renderItem={({ item }) => (",
+      "            <View>",
+      "              <Text>hi, flatlist!</Text>",
+      "            </View>",
+      "          )}",
+      "        />"
     ],
-    "prefix": "textInput6-numeric"
+    "prefix": "flatlist-std"
   }
 }

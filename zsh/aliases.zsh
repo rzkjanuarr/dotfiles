@@ -66,9 +66,15 @@ alias brr="nvim ~/dotfiles/zsh/.zshrc"
 alias dot="cd ~/dotfiles"
 
 # ─── [AVD] Android Emulator ────────────────────────
+# quickboot: load snapshot biar boot cepet (bukan cold boot)
 alias mesin_1="emulator -avd andro -snapshot default_boot &"
-alias mesin_2="emulator -avd andro2 -snapshot defaul_boot &"
+alias mesin_2="emulator -avd andro2 -snapshot default_boot &"
+alias mesin_3="emulator -avd andro3 -snapshot default_boot &"
 alias open_ios="open -a Simulator.app"
+# cold boot sekali + wipe data stale (kalau snapshot error / emulator update):
+alias mesin_1_fresh="emulator -avd andro -no-snapshot -wipe-data &"
+alias mesin_2_fresh="emulator -avd andro2 -no-snapshot -wipe-data &"
+alias mesin_3_fresh="emulator -avd andro3 -no-snapshot -wipe-data &"
 
 # ─── [JAVA] Version Manager ────────────────────────
 alias jv11="jv 11"
